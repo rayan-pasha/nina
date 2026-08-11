@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node -v)",
+      "PowerShell(npm -v)",
+      "PowerShell(npm run build 2>&1)",
+      "WebFetch(domain:monday.com)",
+      "WebFetch(domain:www.synthesia.io)",
+      "mcp__visualize__show_widget",
+      "WebFetch(domain:www.asklantern.com)",
+      "WebFetch(domain:agenq.com)",
+      "Bash(pandoc -t markdown \"Canada AI Adoption Gap.docx\" --extract-media=./extracted)"
+    ]
+  }
+}

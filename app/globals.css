@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  /* Blue-black scheme sampled from synthesia.io (#0d0f2c is their heading
+     colour and their dark section background). */
+  --color-ink: #0d0f2c;
+  --color-ink-2: #171a3d;
+  --color-ink-3: #232752;
+
+  --color-slate: #545876;
+  /* #8b8fa8 measured 3.19:1 on white — below the 4.5:1 WCAG AA floor for the
+     12–16px text this is used on. #6b7089 measures 4.88:1. */
+  --color-mute: #6b7089;
+
+  --color-paper: #ffffff;
+  --color-tint: #f4f5fa;
+  --color-line: #e6e8f0;
+
+  --color-brand: #1d4ed8;
+  --color-brand-2: #3b82f6;
+  --color-brand-3: #93c5fd;
+  --color-brand-soft: #eef4ff;
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  /* `backwards` so the ring holds its 0% frame during the delay that waits
+     for the cursor to finish travelling — otherwise it shows early. */
+  --animate-click-ring: click-ring 0.55s ease-out backwards;
+  --animate-tap: tap 0.4s ease-out backwards;
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+/* Infinite logo strip. The track holds two identical copies of the list, so
+   translating exactly -50% lands copy two where copy one started — the loop
+   point is invisible. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Single-shot click feedback for the guided cursor in the hero walkthrough. */
+@keyframes click-ring {
+  0% { transform: scale(0.35); opacity: 0; }
+  18% { opacity: 0.5; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+@keyframes tap {
+  0% { transform: scale(1); }
+  35% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  80%, 100% { transform: scale(1.7); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-slate);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Poppins is geometric — it wants a touch of negative tracking at display
+   sizes and generous rounding on surfaces. */
+.display {
+  color: var(--color-ink);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+.card:hover {
+  border-color: rgba(59, 130, 246, 0.32);
+  box-shadow: 0 22px 48px -24px rgba(13, 15, 44, 0.28);
+}
+
+/* Base blue is #2d69e8 — sampled from the "o" of "own" in the hero headline,
+   where the old three-stop ramp happened to land. The ramp now stays within a
+   narrow band of that colour so it reads as a solid blue with a faint sheen
+   rather than a wash from navy to sky. */
+.text-grad {
+  background: linear-gradient(100deg, #2860e1 0%, #2d69e8 50%, #3573ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.shadow-soft {
+  box-shadow: 0 1px 2px rgba(13, 15, 44, 0.05), 0 16px 40px -20px rgba(13, 15, 44, 0.22);
+}
+
+.shadow-brand {
+  box-shadow: 0 14px 32px -12px rgba(29, 78, 216, 0.45);
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.22);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
