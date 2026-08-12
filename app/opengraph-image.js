@@ -4,6 +4,10 @@ export const alt = "Nina - AgenQ";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// The site builds to a static export, which has no server to render this on
+// request — force-static bakes it to a PNG during the build instead.
+export const dynamic = "force-static";
+
 /**
  * Generated at build time — no binary asset to keep in sync.
  * Uses a system font stack rather than Poppins so rendering never depends on
