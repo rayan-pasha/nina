@@ -22,6 +22,19 @@ Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL` before
 deploying — Open Graph and Twitter crawlers reject relative image URLs, so the
 social cards need an absolute origin.
 
+## Deployment
+
+Live at <https://nina.drraiyanpasha.workers.dev>, hosted on Cloudflare Workers.
+
+Every push to `main` triggers a build automatically — Cloudflare runs
+`npm run build` and `npx wrangler deploy`, which uploads the exported `out/`
+folder. There is no server: `next.config.mjs` sets `output: "export"`, so the
+build produces plain HTML and `wrangler.jsonc` serves it as static assets.
+
+`NEXT_PUBLIC_SITE_URL` must be set as a **build** variable in the Cloudflare
+dashboard, not a runtime one — it is baked into the HTML during the build, and
+the Open Graph tags need an absolute URL or link previews break.
+
 ## Layout
 
 ```
