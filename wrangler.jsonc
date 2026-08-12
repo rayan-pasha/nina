@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers config. There's no server-side code here — the site is
+  // a static export — so this is an assets-only Worker: no `main` entry point,
+  // just a directory of files for Cloudflare to serve from its edge.
+  "name": "nina",
+  "compatibility_date": "2026-08-11",
+  "assets": {
+    // Where `npm run build` puts the exported site.
+    "directory": "./out",
+    // Serve the exported 404.html for unknown paths rather than a bare
+    // Cloudflare error page. Not "single-page-application" — every route here
+    // is a real prerendered HTML file, not client-side routing.
+    "not_found_handling": "404-page"
+  }
+}
