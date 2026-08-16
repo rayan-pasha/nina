@@ -5,22 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { LINKS, newTab } from "@/lib/links";
 
-// Section links are absolute ("/#solution") rather than bare hashes so they
-// still work from /documentation and /blog, not just the home page.
-const links = [
-  { label: "Home", href: "/#top" },
-  { label: "Solution", href: "/#solution" },
-  { label: "Features", href: "/#features" },
-  { label: "Use Case", href: "/#use-case" },
-  { label: "Pricing", href: "/#partner" },
-  {
-    label: "Resources",
-    children: [
-      { label: "Documentation", href: "/documentation" },
-      { label: "Blog", href: "/blog" },
-    ],
-  },
-];
+import { NAV as links } from "@/lib/nav";
 
 function Chevron({ open }) {
   return (
@@ -43,7 +28,8 @@ function Chevron({ open }) {
   );
 }
 
-function ResourcesMenu({ item }) {
+/** Desktop hover/click dropdown. One instance per nav item with children. */
+function DropdownMenu({ item }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef(null);
   const closeTimer = useRef(null);
@@ -99,9 +85,11 @@ function ResourcesMenu({ item }) {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.16, ease: "easeOut" }}
             role="menu"
-            className="absolute left-1/2 top-full z-50 w-52 -translate-x-1/2 pt-2"
+            // Sized to the longest label rather than a fixed width — "Trained
+            // on Your Product Knowledge" would otherwise wrap to three lines.
+            className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2"
           >
-            <div className="overflow-hidden rounded-2xl border border-line bg-paper p-1.5 shadow-soft">
+            <div className="w-max min-w-[13rem] max-w-[20rem] overflow-hidden rounded-2xl border border-line bg-paper p-1.5 shadow-soft">
               {item.children.map((c) => (
                 <Link
                   key={c.label}
@@ -207,7 +195,7 @@ export default function Nav() {
           {links.map((l) => (
             <li key={l.label}>
               {l.children ? (
-                <ResourcesMenu item={l} />
+                <DropdownMenu item={l} />
               ) : (
                 <a
                   href={l.href}
