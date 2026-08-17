@@ -1,4 +1,7 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
+import { FOOTER_GROUPS, CONTACT } from "@/lib/footer";
+import { LINKS, newTab } from "@/lib/links";
 
 const socials = [
   {
@@ -15,13 +18,57 @@ const socials = [
   },
 ];
 
+/** Tap targets clear 44px on touch, then tighten on desktop — at 44px the
+ *  five-row columns would sit unreadably far apart. */
+const ROW =
+  "inline-flex min-h-[44px] items-center text-[14px] leading-snug lg:min-h-[34px]";
+
+function FooterLink({ link }) {
+  // Keys into LINKS rather than paths — the outbound URLs live in one place.
+  const external = LINKS[link.href];
+
+  if (!link.href) {
+    return (
+      <li>
+        <span className={`${ROW} text-white/35`}>{link.label}</span>
+      </li>
+    );
+  }
+
+  if (external) {
+    return (
+      <li>
+        <a
+          href={external}
+          {...newTab}
+          className={`${ROW} text-white/70 transition-colors hover:text-white`}
+        >
+          {link.label}
+        </a>
+      </li>
+    );
+  }
+
+  return (
+    <li>
+      <Link
+        href={link.href}
+        className={`${ROW} text-white/70 transition-colors hover:text-white`}
+      >
+        {link.label}
+      </Link>
+    </li>
+  );
+}
+
 /** Blue-black footer, matching the dark band above it. */
 export default function Footer() {
   return (
-    <footer id="blogs" className="bg-ink pt-16 pb-8">
+    <footer className="bg-ink pt-16 pb-8">
       <div className="mx-auto max-w-6xl px-5">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <Reveal>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-[1.3fr_repeat(5,minmax(0,1fr))] lg:gap-x-8">
+          {/* Brand — full width until there's room for it to sit as a column */}
+          <Reveal className="col-span-2 md:col-span-3 lg:col-span-1">
             <div>
               <div className="flex items-center gap-2.5">
                 <span className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-brand-2 to-brand text-[13px] font-semibold text-white">
@@ -31,70 +78,12 @@ export default function Footer() {
                   AgenQ
                 </span>
               </div>
+
               <p className="mt-4 max-w-[15rem] text-[14.5px] leading-relaxed text-white/55">
                 Built for SaaS. Powered by Agentic AI.
               </p>
-            </div>
-          </Reveal>
 
-          <Reveal delay={0.06}>
-            <div>
-              <h4 className="text-[12.5px] font-semibold uppercase tracking-[0.14em] text-white/40">
-                Contact
-              </h4>
-              {/* Links use inline-flex + min-height so the tap target clears
-                  44px on touch without changing the visual rhythm much. */}
-              <ul className="mt-3 space-y-0.5 text-[14.5px] text-white/70">
-                <li>
-                  <a
-                    href="tel:+14163167435"
-                    className="inline-flex min-h-[44px] items-center transition-colors hover:text-white"
-                  >
-                    +1 (416) 316-7435
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:founder@agenq.com"
-                    className="inline-flex min-h-[44px] items-center transition-colors hover:text-white"
-                  >
-                    founder@agenq.com
-                  </a>
-                </li>
-                <li className="flex min-h-[44px] items-center">Toronto, Canada</li>
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.12}>
-            <div>
-              <h4 className="text-[12.5px] font-semibold uppercase tracking-[0.14em] text-white/40">
-                Company
-              </h4>
-              <ul className="mt-3 space-y-0.5 text-[14.5px] text-white/70">
-                {["About us", "Career", "Privacy Policy"].map((l) => (
-                  <li key={l}>
-                    <a
-                      href="#"
-                      className="group inline-flex min-h-[44px] items-center gap-1.5 transition-colors hover:text-white"
-                    >
-                      {l}
-                      <span className="opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
-                        →
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.18}>
-            <div>
-              <h4 className="text-[12.5px] font-semibold uppercase tracking-[0.14em] text-white/40">
-                Follow Us
-              </h4>
-              <div className="mt-4 flex gap-2.5">
+              <div className="mt-6 flex gap-2.5">
                 {socials.map((s) => (
                   <a
                     key={s.label}
@@ -111,11 +100,50 @@ export default function Footer() {
               </div>
             </div>
           </Reveal>
+
+          {FOOTER_GROUPS.map((group, i) => (
+            <Reveal key={group.title} delay={0.06 + i * 0.05}>
+              <div>
+                <h4 className="text-[12.5px] font-semibold uppercase tracking-[0.14em] text-white/40">
+                  {group.title}
+                </h4>
+                <ul className="mt-3 space-y-0.5">
+                  {group.links.map((link) => (
+                    <FooterLink key={link.label} link={link} />
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+
+          <Reveal delay={0.26}>
+            <div>
+              <h4 className="text-[12.5px] font-semibold uppercase tracking-[0.14em] text-white/40">
+                Contact
+              </h4>
+              <ul className="mt-3 space-y-0.5">
+                {CONTACT.map((c) => (
+                  <li key={c.label}>
+                    {c.href ? (
+                      <a
+                        href={c.href}
+                        className={`${ROW} text-white/70 transition-colors hover:text-white`}
+                      >
+                        {c.label}
+                      </a>
+                    ) : (
+                      <span className={`${ROW} text-white/70`}>{c.label}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
 
         <div className="mt-14 border-t border-white/10 pt-6">
           <p className="text-[13.5px] text-white/40">
-            @copyright AgenQ Inc. 2026 All rights reserved
+            © AgenQ Inc. 2026 — All rights reserved
           </p>
         </div>
       </div>
