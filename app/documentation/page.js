@@ -1,10 +1,28 @@
-import PlaceholderPage from "@/components/PlaceholderPage";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import Docs from "@/components/Docs";
+
+const description =
+  "Guides for installing NINA, teaching her your workflows, and running her inside your product.";
 
 export const metadata = {
   title: "Documentation - AgenQ",
-  description: "Product documentation for NINA by AgenQ.",
+  description,
+  alternates: { canonical: "/documentation" },
+  openGraph: {
+    type: "website",
+    url: "/documentation",
+    title: "Documentation - AgenQ",
+    description,
+  },
 };
 
 export default function Page() {
-  return <PlaceholderPage title="Documentation" />;
+  return (
+    <>
+      <Nav />
+      <Docs />
+      <Footer />
+    </>
+  );
 }
