@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
-import BlogCover from "./BlogCover";
 import { POSTS, CATEGORIES, postHref } from "@/lib/posts";
 
 const featured = POSTS[0];
@@ -94,13 +93,18 @@ export default function BlogIndex() {
               <Link
                 href={postHref(featured)}
                 aria-label={featured.title}
-                className="group block overflow-hidden rounded-3xl border border-line shadow-soft transition-all duration-500 hover:border-brand-2/40 hover:shadow-[0_28px_60px_-28px_rgba(13,15,44,0.35)]"
+                className="block overflow-hidden rounded-3xl border border-line shadow-soft transition-colors duration-300 hover:border-brand-2/40"
               >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.035]">
-                    <BlogCover variant={featured.cover} />
-                  </div>
-                </div>
+                {/* No forced ratio here — these covers carry headline text
+                    close to their edges, and cropping a single hero image to
+                    a fixed box cuts words off. */}
+                <img
+                  src={featured.image}
+                  alt={featured.imageAlt}
+                  width="1200"
+                  height="627"
+                  className="block h-auto w-full"
+                />
               </Link>
             </Reveal>
 
@@ -153,11 +157,14 @@ export default function BlogIndex() {
                   className="card group h-full overflow-hidden"
                 >
                   <Link href={postHref(p)} className="flex h-full flex-col">
-                    <div className="aspect-[16/10] overflow-hidden border-b border-line">
-                      <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.05]">
-                        <BlogCover variant={p.cover} />
-                      </div>
-                    </div>
+                    <img
+                      src={p.image}
+                      alt={p.imageAlt}
+                      width="1200"
+                      height="750"
+                      loading="lazy"
+                      className="aspect-[16/9] w-full border-b border-line object-cover"
+                    />
                     <div className="flex flex-1 flex-col p-6">
                       <Tags tags={p.tags} />
                       <h3 className="mt-3 text-[18px] font-semibold leading-snug tracking-[-0.015em] text-ink transition-colors duration-300 group-hover:text-brand">
@@ -290,9 +297,14 @@ export default function BlogIndex() {
                       </p>
                     </div>
 
-                    <div className="hidden h-[5.5rem] overflow-hidden rounded-2xl border border-line transition-colors duration-300 group-hover:border-brand-2/40 lg:block">
-                      <BlogCover variant={p.cover} compact />
-                    </div>
+                    <img
+                      src={p.image}
+                      alt=""
+                      width="1200"
+                      height="750"
+                      loading="lazy"
+                      className="hidden h-[5.5rem] w-full rounded-2xl border border-line object-cover transition-colors duration-300 group-hover:border-brand-2/40 lg:block"
+                    />
                   </Link>
                 </li>
               ))}

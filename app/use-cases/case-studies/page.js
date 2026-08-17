@@ -2,7 +2,6 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
-import BlogCover from "@/components/BlogCover";
 import { POSTS } from "@/lib/posts";
 import { LINKS, newTab } from "@/lib/links";
 
@@ -70,11 +69,13 @@ export default function Page() {
           <div className="mx-auto max-w-6xl">
             <div className="grid items-center gap-8 lg:grid-cols-[1.02fr_1fr] lg:gap-14">
               <Reveal>
-                <div className="overflow-hidden rounded-3xl border border-line shadow-soft">
-                  <div className="aspect-[16/10]">
-                    <BlogCover variant={study.cover} />
-                  </div>
-                </div>
+                <img
+                  src={study.image}
+                  alt={study.imageAlt}
+                  width="1200"
+                  height="750"
+                  className="block h-auto w-full rounded-3xl border border-line shadow-soft"
+                />
               </Reveal>
 
               <Reveal delay={0.1}>
@@ -135,11 +136,14 @@ export default function Page() {
                 .map((p, i) => (
                   <Reveal key={p.slug} delay={i * 0.08}>
                     <Link href={`/blog/${p.slug}`} className="card group flex h-full flex-col overflow-hidden">
-                      <div className="aspect-[16/10] overflow-hidden border-b border-line">
-                        <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.05]">
-                          <BlogCover variant={p.cover} />
-                        </div>
-                      </div>
+                      <img
+                        src={p.image}
+                        alt={p.imageAlt}
+                        width="1200"
+                        height="750"
+                        loading="lazy"
+                        className="aspect-[16/9] w-full border-b border-line object-cover"
+                      />
                       <div className="flex flex-1 flex-col p-6">
                         <h3 className="text-[16.5px] font-semibold leading-snug tracking-[-0.015em] text-ink transition-colors duration-300 group-hover:text-brand">
                           {p.title}

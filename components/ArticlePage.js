@@ -1,5 +1,4 @@
 import Link from "next/link";
-import BlogCover from "./BlogCover";
 import Reveal from "./Reveal";
 import { ShareRow, BackToTop, ReadingProgress } from "./ArticleChrome";
 
@@ -173,9 +172,13 @@ export default function ArticlePage({ post }) {
           {/* ── Hero + body, stepped in under the header ───────────── */}
           <div className="mx-auto max-w-5xl px-5 lg:pl-[13rem]">
             <Reveal delay={0.1}>
-              <div className="mt-10 aspect-[16/9] max-w-[40rem] overflow-hidden rounded-3xl border border-line shadow-soft">
-                <BlogCover variant={post.cover} />
-              </div>
+              <img
+                src={post.image}
+                alt={post.imageAlt}
+                width="1200"
+                height="675"
+                className="mt-10 block h-auto w-full max-w-[40rem] rounded-3xl border border-line shadow-soft"
+              />
             </Reveal>
 
             <div className="max-w-[40rem]">
