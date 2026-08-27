@@ -1,18 +1,25 @@
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 /**
  * Stand-in for a route that exists in the nav but has no content yet.
- * Keeps the site nav so the page is navigable rather than a dead end.
+ * Keeps the site chrome so the page is navigable rather than a dead end —
+ * replace the whole file with a real page when the content is written.
  */
 export default function PlaceholderPage({ title }) {
   return (
     <>
       <Nav />
-      <main className="grid min-h-screen place-items-center px-5 pb-24 pt-32">
+      <main id="top" className="relative grid min-h-[70vh] place-items-center px-5 pb-24 pt-40">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-1/2 top-[-14rem] h-[30rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(59,130,246,0.16),transparent)] blur-3xl" />
+          <div className="absolute inset-x-0 top-0 h-[28rem] bg-gradient-to-b from-tint/70 to-transparent" />
+        </div>
         <h1 className="display text-center text-[2.5rem] sm:text-[3.25rem]">
           {title}
         </h1>
       </main>
+      <Footer />
     </>
   );
 }
