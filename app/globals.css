@@ -106,6 +106,18 @@ body {
   color: transparent;
 }
 
+/* Four-corner pastel wash behind the Product hero — violet, cyan, green and
+   amber blooms over a vertical fade. Lifted from the design file as-is: it's
+   softer and warmer than the site's single blue glow, which is the point. */
+.aurora {
+  background:
+    radial-gradient(58% 70% at 6% 8%, oklch(0.94 0.045 300 / 0.85) 0%, transparent 62%),
+    radial-gradient(52% 64% at 96% 12%, oklch(0.95 0.04 200 / 0.85) 0%, transparent 60%),
+    radial-gradient(60% 66% at 88% 92%, oklch(0.96 0.035 155 / 0.8) 0%, transparent 62%),
+    radial-gradient(56% 62% at 12% 94%, oklch(0.96 0.03 60 / 0.7) 0%, transparent 62%),
+    linear-gradient(180deg, oklch(0.975 0.02 265) 0%, #ffffff 88%);
+}
+
 .shadow-soft {
   box-shadow: 0 1px 2px rgba(13, 15, 44, 0.05), 0 16px 40px -20px rgba(13, 15, 44, 0.22);
 }

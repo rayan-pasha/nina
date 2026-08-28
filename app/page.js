@@ -1,9 +1,16 @@
-import PlaceholderPage from "@/components/PlaceholderPage";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import Product from "@/components/Product";
 
-// No page-level metadata on purpose: the root inherits the site title and
-// social card from app/layout.js, so link previews for agenq.com stay branded
-// while this page is still a placeholder.
+// No page-level title on purpose: the root inherits the site title and social
+// card from app/layout.js, so link previews for the domain stay branded.
 
 export default function Page() {
-  return <PlaceholderPage title="Product" />;
+  return (
+    <>
+      <Nav />
+      <Product />
+      <Footer />
+    </>
+  );
 }
