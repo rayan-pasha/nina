@@ -90,8 +90,12 @@ export default function Product() {
   return (
     <main id="top" className="overflow-x-clip">
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative px-5 pb-16 pt-32 sm:pt-40">
+      <section className="relative px-5 pb-24 pt-32 sm:pb-28 sm:pt-40">
         <div className="aurora pointer-events-none absolute inset-0 -z-10" />
+        {/* The wash's lower blooms are positioned at 92–94% of the box, so they
+            still carry colour at the bottom edge and would cut off as a hard
+            line. Fade the last stretch into the page instead. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-paper" />
 
         <div className="mx-auto max-w-4xl text-center">
           <Reveal>
@@ -137,7 +141,7 @@ export default function Product() {
       </section>
 
       {/* ── The demo panel ───────────────────────────────────────────── */}
-      <section className="px-5 pb-24 sm:pb-28">
+      <section className="px-5 pb-24 pt-8 sm:pb-28 sm:pt-12">
         <Reveal>
           <div className="mx-auto max-w-5xl">
             <Walkthrough config={STUDIO} />
