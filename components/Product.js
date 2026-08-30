@@ -111,8 +111,8 @@ export default function Product() {
 
           <Reveal delay={0.08}>
             <p className="mx-auto mt-7 max-w-xl text-[16.5px] leading-relaxed sm:mt-8 sm:text-[18px]">
-              AgenQ turns what a user is trying to get done into finished work —
-              inside the software where the work happens.
+              Users ask for what they need. AgenQ completes it, inside your
+              product.
             </p>
           </Reveal>
 
