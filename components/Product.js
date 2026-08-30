@@ -97,11 +97,15 @@ export default function Product() {
             line. Fade the last stretch into the page instead. */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-paper" />
 
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           <Reveal>
-            <h1 className="display mx-auto max-w-3xl text-[clamp(2.125rem,9vw,2.6rem)] sm:text-[clamp(3rem,7vw,3.6rem)] lg:text-[4rem]">
-              Your Product Shouldn&apos;t Just Answer.{" "}
-              <span className="text-grad">It Should Act.</span>
+            {/* Two lines, broken at the sentence. The first half measures
+                ~936px at the lg size, so the break is only forced from lg up
+                where there's room for it; below that it wraps on its own. */}
+            <h1 className="display mx-auto text-[clamp(2rem,8.5vw,2.5rem)] sm:text-[clamp(2.4rem,5.4vw,3rem)] lg:text-[3.4rem]">
+              Your Product Shouldn&apos;t Just Answer.
+              <br className="hidden lg:block" />{" "}
+              <span className="text-grad">It Should Act</span>
             </h1>
           </Reveal>
 
