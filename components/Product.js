@@ -330,9 +330,13 @@ export default function Product() {
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-brand text-[13px] font-semibold text-white">
                       {i + 1}
                     </span>
-                    <div className="mt-4 grid h-24 w-24 place-items-center rounded-2xl border border-line bg-paper text-brand shadow-soft">
-                      <StepIcon name={s.icon} />
-                    </div>
+                    <motion.div
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="mt-4 grid h-32 w-32 place-items-center rounded-3xl border border-line bg-paper text-brand shadow-soft transition-shadow duration-300 hover:border-brand-2/40 hover:shadow-[0_20px_44px_-20px_rgba(13,15,44,0.32)]"
+                    >
+                      <StepIcon name={s.icon} className="h-12 w-12" />
+                    </motion.div>
                     <h3 className="mt-6 text-[18px] font-semibold tracking-[-0.02em] text-ink">
                       {s.title}
                     </h3>
@@ -343,9 +347,9 @@ export default function Product() {
                 </Reveal>
 
                 {i < STEPS.length - 1 && (
-                  // 92px clears the badge (32) + its gap (16) and lands on the
-                  // icon card's centre line (48), less half the arrow.
-                  <div className="hidden lg:mt-[92px] lg:block">
+                  // 107px clears the badge (32) + its gap (16) and lands on the
+                  // icon card's centre line (64), less half the arrow.
+                  <div className="hidden lg:mt-[107px] lg:block">
                     <Connector />
                   </div>
                 )}
