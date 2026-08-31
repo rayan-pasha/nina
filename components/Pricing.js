@@ -221,7 +221,7 @@ export default function Pricing() {
 
         <Reveal delay={0.1}>
           <p className="mx-auto mt-10 max-w-2xl text-center text-[15.5px] leading-relaxed">
-            Pricing is based on deploying an AI Product Assistant —{" "}
+            Pricing is based on deploying an AI Product Assistant,{" "}
             <span className="font-medium text-ink">
               not on the number of users.
             </span>

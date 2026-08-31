@@ -10,7 +10,7 @@ import Partner from "@/components/Partner";
 import Footer from "@/components/Footer";
 
 const description =
-  "NINA guides users through real workflows inside your software — no training calls, no videos, no support tickets.";
+  "NINA guides users through real workflows inside your software, no training calls, no videos, no support tickets.";
 
 export const metadata = {
   title: "For SaaS Onboarding - AgenQ",

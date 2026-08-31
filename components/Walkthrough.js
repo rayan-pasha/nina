@@ -332,7 +332,7 @@ export default function Walkthrough({ config }) {
           </div>
 
           {/* Column layout so the panel card takes up whatever height NINA's
-              chat adds — otherwise her progress list stretches the row and
+              chat adds, otherwise her progress list stretches the row and
               leaves the dashboard with dead space under it. */}
           <div className="flex min-h-[336px] flex-1 flex-col p-3">
             <div className="grid grid-cols-2 gap-2">
@@ -494,7 +494,7 @@ export default function Walkthrough({ config }) {
 
           <div className="flex-1 p-2.5">
             <Bubble show>
-              I&apos;m Nina, your assistant. Ask me anything — I&apos;m here to
+              I&apos;m Nina, your assistant. Ask me anything. I&apos;m here to
               help.
             </Bubble>
             <div

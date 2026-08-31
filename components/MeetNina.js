@@ -37,7 +37,7 @@ export default function MeetNina() {
           <p className="mx-auto mt-6 max-w-2xl text-[16.5px] leading-relaxed sm:text-[17px]">
             NINA understands your workflows, documentation, FAQs, and product
             knowledge. When users get stuck, they ask NINA. NINA answers
-            questions and guides them through the next step — directly inside
+            questions and guides them through the next step, directly inside
             your application.
           </p>
         </Reveal>

@@ -6,7 +6,7 @@ import { POSTS } from "@/lib/posts";
 import { LINKS, newTab } from "@/lib/links";
 
 const description =
-  "Real results from teams running NINA inside their software — measured onboarding time, activation, and support load.";
+  "Real results from teams running NINA inside their software, measured onboarding time, activation, and support load.";
 
 export const metadata = {
   title: "Customer Stories - AgenQ",

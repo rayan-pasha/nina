@@ -176,7 +176,7 @@ export default function Product() {
 
           <Reveal delay={0.12}>
             <MediaSlot
-              label="Screenshot — a user mid-task with the question typed"
+              label="Screenshot, a user mid-task with the question typed"
               className="aspect-[4/3] w-full"
             />
           </Reveal>
@@ -223,7 +223,7 @@ export default function Product() {
 
           <Reveal delay={0.1}>
             <p className="mx-auto mt-12 max-w-2xl text-center text-[17px] font-medium leading-relaxed text-ink sm:text-[18.5px]">
-              First day or fifth year — the user asks for the outcome, not the
+              First day or fifth year, the user asks for the outcome, not the
               instructions.
             </p>
           </Reveal>
@@ -387,7 +387,7 @@ export default function Product() {
 
           <Reveal delay={0.12}>
             <MediaSlot
-              label="Screen — permission settings and an approval prompt"
+              label="Screen: permission settings and an approval prompt"
               className="aspect-[4/3] w-full"
             />
           </Reveal>

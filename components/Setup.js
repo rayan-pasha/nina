@@ -37,7 +37,7 @@ export default function Setup() {
           </Reveal>
           <Reveal delay={0.14}>
             <p className="mx-auto mt-5 max-w-lg text-[16.5px] leading-relaxed">
-              Get NINA up and running quickly — no lengthy implementation.
+              Get NINA up and running quickly, with no lengthy implementation.
             </p>
           </Reveal>
         </div>

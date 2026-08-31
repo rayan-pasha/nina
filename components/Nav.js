@@ -232,7 +232,7 @@ export default function Nav() {
         >
           {/* Three bars on whole-pixel offsets (3 / 7 / 11 in a 16px box) so
               they render crisply and space evenly. All three are positioned
-              with `top` only — mixing top and bottom made the two strokes
+              with `top` only, mixing top and bottom made the two strokes
               cross 1.5px apart, which is why the X looked lopsided. */}
           <span className="relative block h-4 w-[18px]" aria-hidden="true">
             <span

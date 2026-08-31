@@ -44,7 +44,7 @@ export default function Insurance() {
 
           <Reveal delay={0.08}>
             <p className="mx-auto mt-7 max-w-xl text-[16.5px] leading-relaxed sm:mt-8 sm:text-[18px]">
-              AgenQ turns your platform into its own expert — product knowledge
+              AgenQ turns your platform into its own expert: product knowledge
               and workflow guidance, without leaving the software.
             </p>
           </Reveal>
@@ -91,7 +91,7 @@ export default function Insurance() {
               </p>
               <p className="mt-4 max-w-[30rem] text-[16.5px] leading-relaxed">
                 The knowledge that explains a policy lives in PDFs, portals, and
-                training sessions — none of which are open when the user is
+                training sessions, none of which are open when the user is
                 quoting.
               </p>
               <p className="mt-5 max-w-[30rem] text-[17px] font-medium leading-relaxed text-ink">
@@ -103,7 +103,7 @@ export default function Insurance() {
 
           <Reveal delay={0.12}>
             <MediaSlot
-              label="Photo — broker at work"
+              label="Photo: broker at work"
               className="aspect-[4/3] w-full"
             />
           </Reveal>
@@ -283,8 +283,8 @@ export default function Insurance() {
                   See How It Works Inside an Insurance Platform
                 </h2>
                 <p className="mt-5 max-w-[26rem] text-[16px] leading-relaxed text-white/60">
-                  A walkthrough in one of our insurance customers&apos; software
-                  — real products, real workflows.
+                  A walkthrough in one of our insurance customers&apos;
+                  software, with real products and real workflows.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a

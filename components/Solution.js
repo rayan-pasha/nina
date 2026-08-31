@@ -10,12 +10,12 @@ const steps = [
   {
     n: "02",
     title: "Teach NINA your workflows",
-    body: "Not just documents — the actual click-by-click paths users take to get work done inside your product.",
+    body: "Not just documents. The actual click-by-click paths users take to get work done inside your product.",
   },
   {
     n: "03",
     title: "Users ask in plain English",
-    body: "“How do I invite my team?” — Users ask in their own words, right where they are working.",
+    body: "“How do I invite my team?” Users ask in their own words, right where they are working.",
   },
   {
     n: "04",
