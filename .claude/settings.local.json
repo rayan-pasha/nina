@@ -9,7 +9,10 @@
       "mcp__visualize__show_widget",
       "WebFetch(domain:www.asklantern.com)",
       "WebFetch(domain:agenq.com)",
-      "Bash(pandoc -t markdown \"Canada AI Adoption Gap.docx\" --extract-media=./extracted)"
+      "Bash(pandoc -t markdown \"Canada AI Adoption Gap.docx\" --extract-media=./extracted)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }

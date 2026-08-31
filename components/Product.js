@@ -274,7 +274,15 @@ export default function Product() {
                 <motion.article
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 320, damping: 26 }}
-                  className="card grid items-center gap-8 p-6 sm:p-7 lg:grid-cols-[1.3fr_1fr] lg:gap-12"
+                  className={`card grid items-center gap-8 p-6 sm:p-7 lg:gap-12 ${
+                    // The column template flips with the row, not just the
+                    // order. `order` only moves a child between columns, so
+                    // reusing one template would hand the media the narrow
+                    // column on alternating rows and shrink that card.
+                    i % 2 === 1
+                      ? "lg:grid-cols-[1fr_1.3fr]"
+                      : "lg:grid-cols-[1.3fr_1fr]"
+                  }`}
                 >
                   {/* Alternating sides, but the media stays first in the DOM on
                       small screens so every row reads image-then-text. */}
