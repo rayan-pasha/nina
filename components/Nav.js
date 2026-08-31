@@ -179,16 +179,20 @@ export default function Nav() {
             : "border border-transparent"
         }`}
       >
-        <Link href="/" className="flex min-h-[44px] items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-brand-2 to-brand text-[13px] font-semibold text-white shadow-brand">
-            N
-          </span>
-          {/* leading-none keeps the line box equal to the font size, so the
-              wordmark sits flush against the 32px badge rather than carrying
-              extra line-height above and below it. */}
-          <span className="text-[28px] font-semibold leading-none tracking-tight text-ink">
-            AgenQ
-          </span>
+        {/* The wordmark carries the name, so the link needs its own label for
+            anyone not seeing the image. */}
+        <Link
+          href="/"
+          aria-label="AgenQ home"
+          className="flex min-h-[44px] items-center"
+        >
+          <img
+            src="/images/agenq-logo.webp"
+            alt="AgenQ"
+            width="357"
+            height="110"
+            className="h-8 w-auto"
+          />
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">

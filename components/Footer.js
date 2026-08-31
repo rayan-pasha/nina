@@ -77,12 +77,13 @@ export default function Footer() {
         <Reveal>
           <div className="flex flex-wrap items-start justify-between gap-8 pt-16">
             <div>
-              <div className="flex items-center gap-2.5">
-                <span className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-brand-2 to-brand text-[13px] font-semibold text-white shadow-brand">
-                  N
-                </span>
-                <span className="text-[15px] font-semibold text-ink">AgenQ</span>
-              </div>
+              <img
+                src="/images/agenq-logo.webp"
+                alt="AgenQ"
+                width="357"
+                height="110"
+                className="h-7 w-auto"
+              />
               <p className="mt-4 max-w-[16rem] text-[14.5px] leading-relaxed text-slate">
                 Software that guides its own users. Toronto, Canada.
               </p>
