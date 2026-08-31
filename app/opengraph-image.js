@@ -1,4 +1,13 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { ImageResponse } from "next/og";
+
+// The white wordmark, not the black one used in the nav: this card sits on a
+// near-black background. Inlined as a data URI because the card is rendered
+// during the build, when there's no server to fetch a URL from.
+const logo = `data:image/png;base64,${readFileSync(
+  path.join(process.cwd(), "content/images/agenq-logo-white.png")
+).toString("base64")}`;
 
 export const alt = "Nina - AgenQ";
 export const size = { width: 1200, height: 630 };
@@ -28,39 +37,25 @@ export default function Image() {
           fontFamily: "sans-serif",
         }}
       >
-        {/* glow */}
+        {/* Glow. Satori ignores `closest-side` and paints the element's box,
+            so the shape has to come from the element itself: an ellipse via
+            border-radius, with the gradient fading out well inside it. */}
         <div
           style={{
             position: "absolute",
-            top: -260,
-            left: 300,
-            width: 700,
-            height: 520,
+            top: -300,
+            left: 280,
+            width: 760,
+            height: 620,
+            borderRadius: "50%",
             background:
-              "radial-gradient(closest-side, rgba(59,130,246,0.45), rgba(13,15,44,0))",
+              "radial-gradient(circle, rgba(59,130,246,0.42) 0%, rgba(59,130,246,0.16) 45%, rgba(13,15,44,0) 72%)",
           }}
         />
 
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: 14,
-              background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontSize: 26,
-              fontWeight: 700,
-            }}
-          >
-            N
-          </div>
-          <div style={{ color: "#fff", fontSize: 30, fontWeight: 600 }}>
-            AgenQ
-          </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} width={228} height={75} alt="AgenQ" />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>

@@ -12,7 +12,8 @@
       "Bash(pandoc -t markdown \"Canada AI Adoption Gap.docx\" --extract-media=./extracted)",
       "Bash(npm run *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(curl -sSL --max-time 60 -o content/images/agenq-logo-white.png \"https://agenq.com/wp-content/uploads/2025/11/agenq_logo.png\")"
     ]
   }
 }
