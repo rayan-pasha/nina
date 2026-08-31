@@ -175,9 +175,15 @@ export default function Product() {
           </Reveal>
 
           <Reveal delay={0.12}>
-            <MediaSlot
-              label="Screenshot, a user mid-task with the question typed"
-              className="aspect-[4/3] w-full"
+            {/* Natural ratio rather than a fixed box: the typed line at the
+                bottom of the screen is the whole point of the shot, and a
+                crop would take it. */}
+            <img
+              src="/images/nobody-signed-up.webp"
+              alt="A user at their desk mid-task in a CRM, having typed “I just want to set this customer up for annual billing”"
+              width="1577"
+              height="997"
+              className="block h-auto w-full rounded-3xl border border-line shadow-soft"
             />
           </Reveal>
         </div>
