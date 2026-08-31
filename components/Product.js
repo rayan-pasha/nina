@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 import BackedBy from "./BackedBy";
 import Walkthrough from "./Walkthrough";
 import { STUDIO, LEDGERLY } from "@/lib/walkthroughs";
-import { ASKS, STEPS, VERTICALS } from "@/lib/product";
+import {
+  ASKS,
+  STEPS,
+  STEPS_SUBHEAD,
+  STEPS_NOTE,
+  VERTICALS,
+} from "@/lib/product";
 import { LINKS, newTab } from "@/lib/links";
 
 /**
@@ -31,6 +37,70 @@ function MediaSlot({ label, className = "" }) {
         {label}
       </p>
     </div>
+  );
+}
+
+const STEP_ICONS = {
+  bubble: (
+    <>
+      <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L4 21l1.1-4.4A8.4 8.4 0 1 1 21 11.5Z" />
+      <circle cx="8.5" cy="11.5" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="12.5" cy="11.5" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="16.5" cy="11.5" r="1.1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  search: (
+    <>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m15.5 15.5 5 5" />
+    </>
+  ),
+  bolt: <path d="M13 2 4.5 13.5H11l-1 8.5 9-11.5H12.5L13 2Z" />,
+  check: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12 2.8 2.8L16 9.5" />
+    </>
+  ),
+  shield: <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z" />,
+};
+
+function StepIcon({ name, className = "h-8 w-8" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      {STEP_ICONS[name]}
+    </svg>
+  );
+}
+
+/** The line and chevron between two steps. Only rendered from lg up, where
+ *  the four steps sit in a row. */
+function Connector() {
+  return (
+    <svg
+      viewBox="0 0 80 10"
+      className="w-20 text-brand-2/60"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M0 5h68" stroke="currentColor" strokeWidth="1.4" />
+      <path
+        d="m66 1.5 4 3.5-4 3.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
@@ -243,25 +313,61 @@ export default function Product() {
             <h2 className="display mx-auto max-w-2xl text-center text-[1.95rem] sm:text-[2.5rem]">
               How AgenQ <span className="text-grad">Gets It Done</span>
             </h2>
+            <p className="mx-auto mt-5 max-w-xl text-center text-[16.5px] leading-relaxed">
+              {STEPS_SUBHEAD}
+            </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Seven columns at lg so the connectors are real grid items rather
+              than absolutely positioned guesses. They're display:none below
+              lg, which takes them out of the grid entirely, so the steps fall
+              back to a plain two-up and then a single column. */}
+          <div className="mt-14 grid items-start gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:gap-x-2">
             {STEPS.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.07} className="h-full">
-                <div className="h-full">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-2 to-brand text-[13px] font-semibold text-white shadow-brand">
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-5 text-[18px] font-semibold tracking-[-0.02em] text-ink">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2.5 text-[14.5px] leading-relaxed">
-                    {s.body}
-                  </p>
-                </div>
-              </Reveal>
+              <Fragment key={s.title}>
+                <Reveal delay={i * 0.08}>
+                  <div className="flex flex-col items-center text-center">
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-brand text-[13px] font-semibold text-white">
+                      {i + 1}
+                    </span>
+                    <div className="mt-4 grid h-24 w-24 place-items-center rounded-2xl border border-line bg-paper text-brand shadow-soft">
+                      <StepIcon name={s.icon} />
+                    </div>
+                    <h3 className="mt-6 text-[18px] font-semibold tracking-[-0.02em] text-ink">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2.5 max-w-[15rem] text-[14.5px] leading-relaxed">
+                      {s.body}
+                    </p>
+                  </div>
+                </Reveal>
+
+                {i < STEPS.length - 1 && (
+                  // 92px clears the badge (32) + its gap (16) and lands on the
+                  // icon card's centre line (48), less half the arrow.
+                  <div className="hidden lg:mt-[92px] lg:block">
+                    <Connector />
+                  </div>
+                )}
+              </Fragment>
             ))}
           </div>
+
+          <Reveal delay={0.3}>
+            <div className="mt-16 flex items-start gap-5 rounded-3xl border border-line bg-paper p-6 sm:p-8">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
+                <StepIcon name="shield" className="h-6 w-6" />
+              </span>
+              <div>
+                <p className="text-[16px] font-semibold text-ink">
+                  {STEPS_NOTE.title}
+                </p>
+                <p className="mt-1.5 text-[15px] leading-relaxed">
+                  {STEPS_NOTE.body}
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
