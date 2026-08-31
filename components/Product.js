@@ -381,7 +381,7 @@ export default function Product() {
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="display text-[1.95rem] sm:text-[2.5rem]">
-                A <span className="text-grad">Closer Look</span>
+                A Closer <span className="text-grad">Look</span>
               </h2>
               <p className="mt-6 text-[16.5px] leading-relaxed">
                 AgenQ runs inside your product, where the work is already
