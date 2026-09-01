@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
@@ -115,44 +115,6 @@ function Arrow({ className = "h-4 w-4" }) {
         strokeLinejoin="round"
       />
     </svg>
-  );
-}
-
-/** No backend to post to, so submitting opens the visitor's mail client with
- *  their address already in the body. Swap for a real form service later. */
-function SignupForm() {
-  const [email, setEmail] = useState("");
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const body = encodeURIComponent(
-      `Please send me the 60-second overview.\n\n${email}`
-    );
-    window.location.href = `mailto:founder@agenq.com?subject=${encodeURIComponent(
-      "Send me the AgenQ overview"
-    )}&body=${body}`;
-  };
-
-  return (
-    <form onSubmit={onSubmit} className="mx-auto mt-8 flex max-w-[29rem] gap-2.5">
-      <label className="min-w-0 flex-1">
-        <span className="sr-only">Your email address</span>
-        <input
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@company.com"
-          className="h-12 w-full rounded-full border border-line bg-paper px-5 text-[15px] text-ink outline-none transition-all duration-200 placeholder:text-mute focus:border-brand-2/50 focus:ring-4 focus:ring-brand-2/10"
-        />
-      </label>
-      <button
-        type="submit"
-        className="inline-flex h-12 shrink-0 items-center rounded-full bg-gradient-to-r from-brand-2 to-brand px-6 text-[15px] font-semibold text-white shadow-brand transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
-      >
-        Send It
-      </button>
-    </form>
   );
 }
 
@@ -488,76 +450,6 @@ export default function Product() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* ── Action, with control ─────────────────────────────────────── */}
-      <section className="px-5 py-20 sm:py-24">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <Reveal>
-            <div>
-              <h2 className="display text-[1.95rem] sm:text-[2.5rem]">
-                Action, <span className="text-grad">With Control.</span>
-              </h2>
-              <p className="mt-6 max-w-[29rem] text-[16.5px] leading-relaxed">
-                Decide what AgenQ can execute on its own, what requires
-                confirmation, and where the user needs to step in. Every action
-                is recorded and traceable.
-              </p>
-              <p className="mt-5 max-w-[29rem] text-[17px] font-medium leading-relaxed text-ink">
-                Automated where it should be. Human-approved where it matters.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.12}>
-            <MediaSlot
-              label="Screen: permission settings and an approval prompt"
-              className="aspect-[4/3] w-full"
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── Security ─────────────────────────────────────────────────── */}
-      <section className="px-5 pb-20 sm:pb-24">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <h2 className="display text-[1.95rem] sm:text-[2.5rem]">
-              Built for <span className="text-grad">Security Review</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mt-6 text-[16.5px] leading-relaxed">
-              AgenQ uses only the knowledge you approve and the workflows you
-              permit. Permissions are controlled by your team, with actions
-              logged for traceability. Data handling and residency options
-              available on request.
-            </p>
-          </Reveal>
-          <Reveal delay={0.14}>
-            <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-soft px-4 py-2 text-[13.5px] font-semibold text-brand">
-              SOC 2 in progress
-            </span>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── Newsletter ───────────────────────────────────────────────── */}
-      <section className="px-5 pb-20 sm:pb-24">
-        <Reveal>
-          <div className="mx-auto max-w-2xl rounded-[1.75rem] border border-line bg-paper p-8 text-center shadow-soft sm:p-12">
-            <h2 className="display text-[1.5rem] sm:text-[1.85rem]">
-              Not Ready for a Demo?
-            </h2>
-            <p className="mx-auto mt-4 max-w-[30rem] text-[16px] leading-relaxed">
-              Get the 60-second overview and occasional AgenQ updates.
-            </p>
-            <p className="mt-1.5 text-[14.5px] text-mute">
-              No sequence. No sales follow-up.
-            </p>
-            <SignupForm />
-          </div>
-        </Reveal>
       </section>
 
       {/* ── Closing CTA ──────────────────────────────────────────────── */}

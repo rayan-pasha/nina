@@ -14,7 +14,6 @@ Product page (/)
   ask-approval           AgenQ requesting approval
   vertical-insurance     insurance platform screenshot
   vertical-saas          SaaS onboarding screenshot
-  control-permissions    permission settings and an approval prompt
 
 Insurance page (/solutions/insurance)
   coverage-question      AgenQ answering a coverage question
