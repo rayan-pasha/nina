@@ -195,7 +195,12 @@ export default function Nav() {
           />
         </Link>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        {/* The whitespace between two labels is the flex gap plus each item's
+            own px-3.5, so gap-12 reads as 48 + 14 + 14 = 76px. That is close
+            to the ceiling: at the lg breakpoint itself (1024px) it leaves only
+            ~45px before the links crowd the logo and the CTA pair, so don't
+            push it much further without shrinking something else. */}
+        <ul className="hidden items-center gap-12 lg:flex">
           {links.map((l) => (
             <li key={l.label}>
               {l.children ? (
