@@ -17,10 +17,15 @@ Product page (/)
   control-permissions    permission settings and an approval prompt
 
 Insurance page (/solutions/insurance)
-  broker-at-work         photo, broker at work
   coverage-question      AgenQ answering a coverage question
   guided-quote           AgenQ guiding a quote
   plan-comparison        plan comparison in the platform
 
 Done
-  nobody-signed-up       a user mid-task with the question typed
+  nobody-signed-up            a user mid-task with the question typed
+                              (Product page, opening section)
+  nobody-signed-up-insurance  the brighter variant of the same scene
+                              (Insurance page, "more complexity" section)
+
+Two near-identical photos, deliberately: same staged CRM, different model and
+lighting, so the two pages don't look copy-pasted. Don't dedupe them.

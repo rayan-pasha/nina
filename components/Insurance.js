@@ -102,9 +102,15 @@ export default function Insurance() {
           </Reveal>
 
           <Reveal delay={0.12}>
-            <MediaSlot
-              label="Photo: broker at work"
-              className="aspect-[4/3] w-full"
+            {/* Natural ratio rather than the 4/3 box the slot used: the typed
+                line at the bottom of the shot is the point, and a crop takes
+                it. */}
+            <img
+              src="/images/nobody-signed-up-insurance.webp"
+              alt="A user at their desk mid-task in a CRM, having typed “I just want to set this customer up for annual billing” while a Need help? panel offers documentation, a video tutorial, support and training"
+              width="1024"
+              height="647"
+              className="block h-auto w-full rounded-3xl border border-line shadow-soft"
             />
           </Reveal>
         </div>
