@@ -240,12 +240,16 @@ function AskCarousel() {
               {/* One column at every width, so the copy always sits under the
                   media. Capped rather than full-bleed: at the card's full
                   1104px a 16/9 box would stand over 600px tall on its own. */}
-              <div className="mx-auto max-w-3xl p-6 sm:p-7">
+              <div className="mx-auto max-w-3xl p-6 text-center sm:p-7">
                 <MediaSlot label={ask.media} className="aspect-[16/9] w-full" />
                 <p className="mt-7 text-[19px] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[21px]">
                   {ask.quote}
                 </p>
-                <p className="mt-3 text-[15.5px] leading-relaxed">{ask.body}</p>
+                {/* Held narrower than the media above it: centred text over the
+                    full 712px runs to a measure that's tiring to read. */}
+                <p className="mx-auto mt-3 max-w-xl text-[15.5px] leading-relaxed">
+                  {ask.body}
+                </p>
               </div>
             </motion.article>
           );
