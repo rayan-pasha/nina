@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "./Reveal";
 import BackedBy from "./BackedBy";
 import Walkthrough from "./Walkthrough";
@@ -187,6 +188,96 @@ function StepIcon({ name, className = "h-8 w-8" }) {
   );
 }
 
+/** How long each ask holds before the card turns over. */
+const ASK_HOLD = 5000;
+
+/**
+ * The three asks share one card that cycles between them.
+ *
+ * All three slides stay mounted in the same grid cell and crossfade, rather
+ * than swapping one out for the other: the card is then always as tall as the
+ * tallest slide, so nothing below it shifts when it turns over.
+ *
+ * The timer is keyed on `active`, so clicking a dot restarts the full hold
+ * instead of leaving a part-spent one running.
+ */
+function AskCarousel() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (paused || reduceMotion) return;
+    const id = setTimeout(
+      () => setActive((i) => (i + 1) % ASKS.length),
+      ASK_HOLD
+    );
+    return () => clearTimeout(id);
+  }, [active, paused, reduceMotion]);
+
+  return (
+    <div
+      // Hovering or tabbing in holds the current slide, so it can't change
+      // out from under someone mid-sentence.
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      <div className="card grid overflow-hidden">
+        {ASKS.map((ask, i) => {
+          const on = i === active;
+
+          return (
+            <motion.article
+              key={ask.quote}
+              className="col-start-1 row-start-1"
+              style={{ pointerEvents: on ? "auto" : "none" }}
+              animate={{ opacity: on ? 1 : 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.45, ease: "easeOut" }}
+              aria-hidden={!on}
+            >
+              <div className="grid h-full items-center gap-8 p-6 sm:p-7 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
+                <MediaSlot label={ask.media} className="aspect-[16/9] w-full" />
+                <div>
+                  <p className="text-[19px] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[21px]">
+                    {ask.quote}
+                  </p>
+                  <p className="mt-3 text-[15.5px] leading-relaxed">
+                    {ask.body}
+                  </p>
+                </div>
+              </div>
+            </motion.article>
+          );
+        })}
+      </div>
+
+      <div className="mt-6 flex items-center justify-center gap-1">
+        {ASKS.map((ask, i) => (
+          <button
+            key={ask.quote}
+            type="button"
+            onClick={() => setActive(i)}
+            aria-label={`Show ${ask.quote}`}
+            aria-current={i === active}
+            // The bar is 8px tall; the button carries the 44px tap target.
+            className="group flex h-11 items-center px-1.5"
+          >
+            <span
+              className={`block h-2 rounded-full transition-all duration-300 ${
+                i === active
+                  ? "w-7 bg-brand"
+                  : "w-2 bg-line group-hover:bg-mute/60"
+              }`}
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Arrow({ className = "h-4 w-4" }) {
   return (
     <svg className={className} viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -313,42 +404,11 @@ export default function Product() {
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-5">
-            {ASKS.map((ask, i) => (
-              <Reveal key={ask.quote} delay={i * 0.08}>
-                <motion.article
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 320, damping: 26 }}
-                  className={`card grid items-center gap-8 p-6 sm:p-7 lg:gap-12 ${
-                    // The column template flips with the row, not just the
-                    // order. `order` only moves a child between columns, so
-                    // reusing one template would hand the media the narrow
-                    // column on alternating rows and shrink that card.
-                    i % 2 === 1
-                      ? "lg:grid-cols-[1fr_1.3fr]"
-                      : "lg:grid-cols-[1.3fr_1fr]"
-                  }`}
-                >
-                  {/* Alternating sides, but the media stays first in the DOM on
-                      small screens so every row reads image-then-text. */}
-                  <MediaSlot
-                    label={ask.media}
-                    className={`aspect-[16/9] w-full ${
-                      i % 2 === 1 ? "lg:order-2" : ""
-                    }`}
-                  />
-                  <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                    <p className="text-[19px] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[21px]">
-                      {ask.quote}
-                    </p>
-                    <p className="mt-3 text-[15.5px] leading-relaxed">
-                      {ask.body}
-                    </p>
-                  </div>
-                </motion.article>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <div className="mt-14">
+              <AskCarousel />
+            </div>
+          </Reveal>
 
           <Reveal delay={0.1}>
             <p className="mx-auto mt-12 max-w-2xl text-center text-[17px] font-medium leading-relaxed text-ink sm:text-[18.5px]">
