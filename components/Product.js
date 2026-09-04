@@ -12,6 +12,8 @@ import {
   STEPS,
   STEPS_SUBHEAD,
   STEPS_NOTE,
+  BOUNDARIES,
+  BOUNDARIES_SUBHEAD,
   VERTICALS,
 } from "@/lib/product";
 import { LINKS, newTab } from "@/lib/links";
@@ -63,7 +65,100 @@ const STEP_ICONS = {
     </>
   ),
   shield: <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z" />,
+
+  // The four boundary icons. Each pairs line art with one solid brand shape,
+  // so the thing being asserted (the approval, the authorised step) reads
+  // first at the 40px size these render at.
+  "person-check": (
+    <>
+      <circle cx="9.8" cy="7.8" r="3.5" />
+      <path d="M3.4 20.2a6.6 6.6 0 0 1 10.2-5.5" />
+      <circle cx="16.8" cy="16.8" r="4.2" fill="currentColor" stroke="none" />
+      <path
+        d="m15 16.9 1.3 1.3 2.4-2.7"
+        stroke="var(--color-paper)"
+        strokeWidth="1.6"
+      />
+    </>
+  ),
+  approved: (
+    <>
+      <rect
+        x="8.7"
+        y="2.6"
+        width="6.6"
+        height="6.6"
+        rx="1.7"
+        fill="currentColor"
+        stroke="none"
+      />
+      <path
+        d="m10.6 5.9 1.2 1.2 2.3-2.4"
+        stroke="var(--color-paper)"
+        strokeWidth="1.6"
+      />
+      <path d="M12 9.2v2.2" />
+      <path d="M5.6 14.2v-1.3a1.5 1.5 0 0 1 1.5-1.5h9.8a1.5 1.5 0 0 1 1.5 1.5v1.3" />
+      <path d="M12 11.4v3" />
+      <rect x="3.3" y="14.4" width="4.6" height="4.6" rx="1.3" />
+      <circle cx="12" cy="16.7" r="2.3" />
+      <rect x="16.1" y="14.4" width="4.6" height="4.6" rx="1.3" />
+    </>
+  ),
+  cloud: (
+    <>
+      {/* Closed and symmetric, sitting clear of the bars below. An open arc
+          left its two ends pointing at them and the pair read as one shape. */}
+      <path d="M7 10.4a3.1 3.1 0 0 1 .5-6.1 4.4 4.4 0 0 1 8.2 0 3.1 3.1 0 0 1 .5 6.1Z" />
+      {/* Narrower than the cloud above them, or the two read as one block. */}
+      <rect x="7.4" y="13.6" width="9.2" height="3.1" rx="1.1" />
+      <rect x="7.4" y="17.6" width="9.2" height="3.1" rx="1.1" />
+      <path d="M9.7 15.15h.01M9.7 19.15h.01" />
+      <path d="M11.8 15.15h2.8M11.8 19.15h2.8" />
+    </>
+  ),
+  "lock-doc": (
+    <>
+      <path d="M9.4 3.4h5.9l3.4 3.4v11a1.8 1.8 0 0 1-1.8 1.8H9.4a1.8 1.8 0 0 1-1.8-1.8V5.2a1.8 1.8 0 0 1 1.8-1.8Z" />
+      <path d="M15.1 3.5v3.5h3.5" />
+      <path d="M11.4 9.6h4.2M11.4 12.4h4.2" />
+      {/* Filled with the badge's own background so the lock knocks a clean
+          hole in the page behind it rather than crossing its lines. */}
+      <rect
+        x="2.6"
+        y="13.4"
+        width="8.4"
+        height="6.8"
+        rx="1.7"
+        fill="var(--color-brand-soft)"
+      />
+      <path d="M4.9 13.3v-1.8a1.9 1.9 0 0 1 3.8 0v1.8" />
+      <circle cx="6.8" cy="16.4" r="1" />
+      <path d="M6.8 17.4v1.2" />
+    </>
+  ),
 };
+
+/** The solid check that opens each card's assurance line. */
+function CheckBadge() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="h-[18px] w-[18px] shrink-0 text-brand"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="9" fill="currentColor" />
+      <path
+        d="m6.2 10.2 2.4 2.4 5.2-5.4"
+        fill="none"
+        stroke="var(--color-paper)"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 function StepIcon({ name, className = "h-8 w-8" }) {
   return (
@@ -446,6 +541,62 @@ export default function Product() {
                     </div>
                   </Link>
                 </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── The boundaries you set ───────────────────────────────────── */}
+      <section className="px-5 py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            {/* Broken at the phrase from sm up. Left to wrap on its own the
+                second line keeps only "you set." and the emphasis strands. */}
+            <h2 className="display mx-auto max-w-3xl text-center text-[1.95rem] sm:text-[2.5rem]">
+              AgenQ works inside
+              <br className="hidden sm:block" />{" "}
+              the boundaries{" "}
+              {/* Held together so narrow screens don't strand "set." alone on
+                  a third line. */}
+              <span className="text-grad whitespace-nowrap">you set.</span>
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <p className="mx-auto mt-6 max-w-xl text-center text-[16.5px] leading-relaxed">
+              {BOUNDARIES_SUBHEAD}
+            </p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {BOUNDARIES.map((b, i) => (
+              <Reveal key={b.icon} delay={i * 0.08} className="h-full">
+                <motion.article
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 26 }}
+                  className="card flex h-full flex-col items-center p-7 text-center sm:p-8"
+                >
+                  <div className="grid h-20 w-20 place-items-center rounded-full bg-brand-soft text-brand">
+                    <StepIcon name={b.icon} className="h-10 w-10" />
+                  </div>
+
+                  <h3 className="mt-6 text-[19px] font-semibold leading-snug tracking-[-0.025em] text-ink">
+                    {b.lines[0]}
+                    <br />
+                    {b.lines[1]}
+                  </h3>
+
+                  {/* mt-auto pins the rule and its line to the bottom, so the
+                      four assurances sit on one row however the titles fall. */}
+                  <div className="mt-auto w-full pt-6">
+                    <div className="h-px w-full bg-line" />
+                    <p className="mt-5 flex items-center justify-center gap-2 text-[14.5px] leading-snug text-slate">
+                      <CheckBadge />
+                      {b.assurance}
+                    </p>
+                  </div>
+                </motion.article>
               </Reveal>
             ))}
           </div>
