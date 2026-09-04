@@ -12,8 +12,6 @@ Product page (/)
   ask-annual-billing     AgenQ running the annual billing workflow
   ask-report             AgenQ building the report
   ask-approval           AgenQ requesting approval
-  vertical-insurance     insurance platform screenshot
-  vertical-saas          SaaS onboarding screenshot
 
 Insurance page (/solutions/insurance)
   coverage-question      AgenQ answering a coverage question
@@ -28,3 +26,6 @@ Done
 
 Two near-identical photos, deliberately: same staged CRM, different model and
 lighting, so the two pages don't look copy-pasted. Don't dedupe them.
+
+The two "Where Teams Use AgenQ" cards need no image at all: they're drawn in
+components/VerticalMock.js as SVG, so they stay sharp at any width.

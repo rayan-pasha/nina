@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 import BackedBy from "./BackedBy";
 import Walkthrough from "./Walkthrough";
+import { InsuranceMock, SaasMock } from "./VerticalMock";
 import { STUDIO, LEDGERLY } from "@/lib/walkthroughs";
 import {
   ASKS,
@@ -27,6 +28,10 @@ import { LINKS, newTab } from "@/lib/links";
  * the two large demo panels run the scripted NINA walkthroughs rather than
  * showing a screenshot of one.
  */
+
+/** Keyed by VERTICALS[].mock so the data file names an illustration without
+ *  importing a component. */
+const VERTICAL_MOCKS = { insurance: InsuranceMock, saas: SaasMock };
 
 /** Stand-in for a screenshot that doesn't exist yet, labelled with what goes
  *  there. Swap the whole element for an <img> when the asset arrives. */
@@ -493,7 +498,9 @@ export default function Product() {
           </Reveal>
 
           <div className="mt-14 grid gap-5 lg:grid-cols-2">
-            {VERTICALS.map((v, i) => (
+            {VERTICALS.map((v, i) => {
+              const Mock = VERTICAL_MOCKS[v.mock];
+              return (
               <Reveal key={v.title} delay={i * 0.1} className="h-full">
                 <motion.div
                   whileHover={{ y: -5 }}
@@ -501,10 +508,11 @@ export default function Product() {
                   className="card group h-full overflow-hidden"
                 >
                   <Link href={v.href} className="flex h-full flex-col">
-                    <MediaSlot
-                      label={v.media}
-                      className="h-[13rem] w-full rounded-none border-0 border-b border-line"
-                    />
+                    {/* Fixed ratio rather than a fixed height: the drawn scene
+                        has to keep its proportions or the panels crop. */}
+                    <div className="aspect-[566/354] w-full border-b border-line">
+                      <Mock />
+                    </div>
                     <div className="flex flex-1 flex-col p-7 sm:p-9">
                       <h3 className="text-[21px] font-semibold tracking-[-0.025em] text-ink transition-colors duration-300 group-hover:text-brand">
                         {v.title}
@@ -522,7 +530,8 @@ export default function Product() {
                   </Link>
                 </motion.div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
