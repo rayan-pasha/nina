@@ -1,6 +1,5 @@
 "use client";
 
-import { Fragment } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
@@ -65,7 +64,6 @@ const STEP_ICONS = {
       <path d="m8 12 2.8 2.8L16 9.5" />
     </>
   ),
-  shield: <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z" />,
   "shield-check": (
     <>
       <path d="M12 2.9 4.5 5.7v6c0 4.4 3.2 8 7.5 8.8 4.3-.8 7.5-4.4 7.5-8.8v-6L12 2.9Z" />
@@ -180,28 +178,6 @@ function StepIcon({ name, className = "h-8 w-8" }) {
       aria-hidden="true"
     >
       {STEP_ICONS[name]}
-    </svg>
-  );
-}
-
-/** The line and chevron between two steps. Only rendered from lg up, where
- *  the four steps sit in a row. */
-function Connector() {
-  return (
-    <svg
-      viewBox="0 0 80 10"
-      className="w-20 text-brand-2/60"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path d="M0 5h68" stroke="currentColor" strokeWidth="1.4" />
-      <path
-        d="m66 1.5 4 3.5-4 3.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
     </svg>
   );
 }
@@ -390,49 +366,46 @@ export default function Product() {
             </p>
           </Reveal>
 
-          {/* Seven columns at lg so the connectors are real grid items rather
-              than absolutely positioned guesses. They're display:none below
-              lg, which takes them out of the grid entirely, so the steps fall
-              back to a plain two-up and then a single column. */}
-          <div className="mt-14 grid items-start gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:gap-x-2">
+          {/* Same four-up card grid as the boundaries section. The numbered
+              badges carry the sequence that the connector arrows used to, so
+              the steps no longer need their own column template. */}
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s, i) => (
-              <Fragment key={s.title}>
-                <Reveal delay={i * 0.08}>
-                  <div className="flex flex-col items-center text-center">
-                    <span className="grid h-8 w-8 place-items-center rounded-full bg-brand text-[13px] font-semibold text-white">
-                      {i + 1}
-                    </span>
-                    <motion.div
-                      whileHover={{ scale: 1.08 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="mt-4 grid h-32 w-32 place-items-center rounded-3xl border border-line bg-paper text-brand shadow-soft transition-shadow duration-300 hover:border-brand-2/40 hover:shadow-[0_20px_44px_-20px_rgba(13,15,44,0.32)]"
-                    >
-                      <StepIcon name={s.icon} className="h-12 w-12" />
-                    </motion.div>
-                    <h3 className="mt-6 text-[18px] font-semibold tracking-[-0.02em] text-ink">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2.5 max-w-[15rem] text-[14.5px] leading-relaxed">
+              <Reveal key={s.title} delay={i * 0.08} className="h-full">
+                <motion.article
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 26 }}
+                  className="card flex h-full flex-col items-center p-7 text-center sm:p-8"
+                >
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-brand text-[13px] font-semibold text-white">
+                    {i + 1}
+                  </span>
+
+                  <div className="mt-5 grid h-20 w-20 place-items-center rounded-full bg-brand-soft text-brand">
+                    <StepIcon name={s.icon} className="h-10 w-10" />
+                  </div>
+
+                  <h3 className="mt-6 text-[19px] font-semibold leading-snug tracking-[-0.025em] text-ink">
+                    {s.title}
+                  </h3>
+
+                  {/* mt-auto pins the rule so the four bodies start on one
+                      line however the titles above them fall. */}
+                  <div className="mt-auto w-full pt-6">
+                    <div className="h-px w-full bg-line" />
+                    <p className="mt-5 text-[14.5px] leading-relaxed text-slate">
                       {s.body}
                     </p>
                   </div>
-                </Reveal>
-
-                {i < STEPS.length - 1 && (
-                  // 107px clears the badge (32) + its gap (16) and lands on the
-                  // icon card's centre line (64), less half the arrow.
-                  <div className="hidden lg:mt-[107px] lg:block">
-                    <Connector />
-                  </div>
-                )}
-              </Fragment>
+                </motion.article>
+              </Reveal>
             ))}
           </div>
 
           <Reveal delay={0.3}>
-            <div className="mt-16 flex items-start gap-5 rounded-3xl border border-line bg-paper p-6 sm:p-8">
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
-                <StepIcon name="shield" className="h-6 w-6" />
+            <div className="mt-5 flex items-start gap-5 rounded-3xl border border-line bg-paper p-6 sm:items-center sm:gap-6 sm:p-7">
+              <span className="shrink-0 text-brand">
+                <StepIcon name="shield-check" className="h-11 w-11" />
               </span>
               <div>
                 <p className="text-[16px] font-semibold text-ink">
