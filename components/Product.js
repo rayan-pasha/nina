@@ -191,6 +191,36 @@ function StepIcon({ name, className = "h-8 w-8" }) {
 /** How long each ask holds before the card turns over. */
 const ASK_HOLD = 5000;
 
+/** Step control for the ask carousel. `dir` is -1 or 1. */
+function AskArrow({ dir, onClick, side }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={dir === -1 ? "Previous example" : "Next example"}
+      // Two stops rather than one: the copy under the media takes up a much
+      // bigger share of a narrow card, so the media's centre sits at ~27% of
+      // the card on mobile and ~40% on desktop.
+      className={`absolute top-[27%] z-10 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-line bg-paper/90 text-slate shadow-soft backdrop-blur transition-all duration-200 hover:border-brand-2/40 hover:text-brand active:scale-95 sm:top-[40%] sm:h-11 sm:w-11 ${side}`}
+    >
+      <svg
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+        className={`h-4 w-4 ${dir === -1 ? "rotate-180" : ""}`}
+      >
+        <path
+          d="m6 3 5 5-5 5"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+}
+
 /**
  * The three asks share one card that cycles between them.
  *
@@ -215,6 +245,10 @@ function AskCarousel() {
     return () => clearTimeout(id);
   }, [active, paused, reduceMotion]);
 
+  // Wraps in both directions, so back from the first lands on the last.
+  const step = (dir) => () =>
+    setActive((i) => (i + dir + ASKS.length) % ASKS.length);
+
   return (
     <div
       // Hovering or tabbing in holds the current slide, so it can't change
@@ -224,7 +258,12 @@ function AskCarousel() {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="card grid overflow-hidden">
+      <div className="card relative grid overflow-hidden">
+        {/* Sat at 34% rather than the card's midpoint: the copy below the media
+            pulls the true centre down past the image the arrows belong to. */}
+        <AskArrow dir={-1} side="left-3 sm:left-5" onClick={step(-1)} />
+        <AskArrow dir={1} side="right-3 sm:right-5" onClick={step(1)} />
+
         {ASKS.map((ask, i) => {
           const on = i === active;
 
