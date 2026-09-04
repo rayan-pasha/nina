@@ -3,8 +3,9 @@ import Footer from "@/components/Footer";
 
 /**
  * Stand-in for a route that exists in the nav but has no content yet.
- * Keeps the site chrome so the page is navigable rather than a dead end —
- * replace the whole file with a real page when the content is written.
+ * Keeps the site chrome so the page is navigable rather than a dead end, and
+ * says "Coming soon" so a visitor knows the page is unfinished rather than
+ * broken. Replace the whole file with a real page when the content is written.
  */
 export default function PlaceholderPage({ title }) {
   return (
@@ -15,9 +16,12 @@ export default function PlaceholderPage({ title }) {
           <div className="absolute left-1/2 top-[-14rem] h-[30rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(59,130,246,0.16),transparent)] blur-3xl" />
           <div className="absolute inset-x-0 top-0 h-[28rem] bg-gradient-to-b from-tint/70 to-transparent" />
         </div>
-        <h1 className="display text-center text-[2.5rem] sm:text-[3.25rem]">
-          {title}
-        </h1>
+        <div className="text-center">
+          <h1 className="display text-[2.5rem] sm:text-[3.25rem]">{title}</h1>
+          <p className="mt-6 inline-flex items-center rounded-full border border-line bg-paper px-4 py-2 text-[13.5px] font-medium text-mute shadow-soft">
+            Coming soon
+          </p>
+        </div>
       </main>
       <Footer />
     </>

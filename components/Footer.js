@@ -18,11 +18,28 @@ function FooterLink({ link }) {
   // one file.
   const external = link.href && !link.href.startsWith("/") && LINKS[link.href];
 
+  // `plain` marks copy that was never meant to be a link — the address line.
+  // Any other entry with no href is a page that hasn't been written yet, and
+  // says so rather than looking like a link that failed.
   if (!link.href) {
+    if (link.plain) {
+      return (
+        <li>
+          <span className={`${ROW} text-slate`}>{link.label}</span>
+        </li>
+      );
+    }
+
     return (
       <li>
-        <span className={`${ROW} ${link.plain ? "text-slate" : "text-mute/60"}`}>
+        <span className={`${ROW} flex-wrap gap-x-2 text-mute/60`}>
           {link.label}
+          {/* Sentence case and no tracking: uppercased, the tag was wide
+              enough to wrap under nearly every label and left the columns
+              ragged. */}
+          <span className="whitespace-nowrap rounded-full bg-tint px-2 py-0.5 text-[10.5px] font-medium text-mute/70">
+            Coming soon
+          </span>
         </span>
       </li>
     );
