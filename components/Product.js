@@ -14,6 +14,7 @@ import {
   STEPS_NOTE,
   BOUNDARIES,
   BOUNDARIES_SUBHEAD,
+  BOUNDARIES_NOTE,
   VERTICALS,
 } from "@/lib/product";
 import { LINKS, newTab } from "@/lib/links";
@@ -65,6 +66,12 @@ const STEP_ICONS = {
     </>
   ),
   shield: <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z" />,
+  "shield-check": (
+    <>
+      <path d="M12 2.9 4.5 5.7v6c0 4.4 3.2 8 7.5 8.8 4.3-.8 7.5-4.4 7.5-8.8v-6L12 2.9Z" />
+      <path d="m8.8 11.7 2.4 2.4 4.1-4.4" />
+    </>
+  ),
 
   // The four boundary icons. Each pairs line art with one solid brand shape,
   // so the thing being asserted (the approval, the authorised step) reads
@@ -600,6 +607,24 @@ export default function Product() {
               </Reveal>
             ))}
           </div>
+
+          {/* Sits on the same gutter as the card grid, so it reads as the row's
+              footer rather than a separate band. */}
+          <Reveal delay={0.34}>
+            <div className="mt-5 flex items-start gap-5 rounded-3xl border border-line bg-tint/70 p-6 sm:items-center sm:gap-6 sm:p-7">
+              <span className="shrink-0 text-brand">
+                <StepIcon name="shield-check" className="h-11 w-11" />
+              </span>
+              <div>
+                <p className="text-[16px] font-semibold text-ink">
+                  {BOUNDARIES_NOTE.title}
+                </p>
+                <p className="mt-1.5 max-w-[46rem] text-[15px] leading-relaxed">
+                  {BOUNDARIES_NOTE.body}
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
