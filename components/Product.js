@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "./Reveal";
@@ -33,20 +33,6 @@ import { LINKS, newTab } from "@/lib/links";
 /** Keyed by VERTICALS[].mock so the data file names an illustration without
  *  importing a component. */
 const VERTICAL_MOCKS = { insurance: InsuranceMock, saas: SaasMock };
-
-/** Stand-in for a screenshot that doesn't exist yet, labelled with what goes
- *  there. Swap the whole element for an <img> when the asset arrives. */
-function MediaSlot({ label, className = "" }) {
-  return (
-    <div
-      className={`grid place-items-center rounded-3xl border border-line bg-tint/60 ${className}`}
-    >
-      <p className="max-w-[20rem] px-6 text-center text-[13px] leading-relaxed text-mute">
-        {label}
-      </p>
-    </div>
-  );
-}
 
 const STEP_ICONS = {
   bubble: (
@@ -188,6 +174,60 @@ function StepIcon({ name, className = "h-8 w-8" }) {
   );
 }
 
+/** The size each demo page is authored for. It sets its own minimum at
+ *  880x500, so it has to be given real room and then scaled down. */
+const DEMO_W = 1120;
+const DEMO_H = 630;
+
+/**
+ * One of the silent workflow demos, scaled to fit the card.
+ *
+ * The demo is a whole page rather than a component, so it runs in an iframe.
+ * It can't be made to fit by giving the iframe a percentage width — the page
+ * inside has a hard 880px minimum and would just clip — so the frame is laid
+ * out at full size and scaled by the ratio the card actually has. That ratio
+ * is measured rather than assumed, since the card is fluid.
+ */
+function DemoFrame({ src, title }) {
+  const wrap = useRef(null);
+  const [scale, setScale] = useState(0);
+
+  useEffect(() => {
+    const el = wrap.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) =>
+      setScale(entry.contentRect.width / DEMO_W)
+    );
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={wrap}
+      className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-line bg-tint/40"
+    >
+      <iframe
+        src={src}
+        title={title}
+        // Decorative: the quote beneath says what the demo shows, and the
+        // frame is not somewhere a keyboard user should land.
+        tabIndex={-1}
+        aria-hidden="true"
+        scrolling="no"
+        className="absolute left-0 top-0 origin-top-left border-0"
+        style={{
+          width: DEMO_W,
+          height: DEMO_H,
+          transform: `scale(${scale})`,
+          // Hidden until measured, so it can't flash at full size first.
+          visibility: scale ? "visible" : "hidden",
+        }}
+      />
+    </div>
+  );
+}
+
 /** How long each ask holds before the card turns over. */
 const ASK_HOLD = 5000;
 
@@ -280,7 +320,7 @@ function AskCarousel() {
                   media. Capped rather than full-bleed: at the card's full
                   1104px a 16/9 box would stand over 600px tall on its own. */}
               <div className="mx-auto max-w-3xl p-6 text-center sm:p-7">
-                <MediaSlot label={ask.media} className="aspect-[16/9] w-full" />
+                <DemoFrame src={ask.demo} title={ask.quote} />
                 <p className="mt-7 text-[19px] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[21px]">
                   {ask.quote}
                 </p>

@@ -9,9 +9,8 @@ visitor.) The first one went 1664KB -> 53KB.
 Slots still waiting on an image:
 
 Product page (/)
-  ask-annual-billing     AgenQ running the annual billing workflow
-  ask-report             AgenQ building the report
-  ask-approval           AgenQ requesting approval
+  (none — the three "How Do I?" slots now run the live demos in
+   public/demos/ instead of screenshots)
 
 Insurance page (/solutions/insurance)
   coverage-question      AgenQ answering a coverage question
