@@ -220,6 +220,7 @@ export default function Nav() {
         <div className="hidden items-center gap-2 lg:flex">
           <a
             href={LINKS.logIn}
+            {...newTab}
             className="inline-flex min-h-[44px] items-center px-3 text-[14px] font-medium text-slate transition-colors hover:text-ink"
           >
             Log In
@@ -300,6 +301,7 @@ export default function Nav() {
             <div className="mt-2 grid grid-cols-2 gap-2 border-t border-line pt-3">
               <a
                 href={LINKS.logIn}
+                {...newTab}
                 onClick={() => setOpen(false)}
                 className="flex min-h-[44px] items-center justify-center rounded-full border border-line px-4 text-[14px] font-medium leading-none text-ink"
               >

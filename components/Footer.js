@@ -109,6 +109,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <a
                 href={LINKS.logIn}
+                {...newTab}
                 className="inline-flex min-h-[44px] items-center text-[14px] font-medium text-slate transition-colors hover:text-ink"
               >
                 Log In
