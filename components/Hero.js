@@ -69,7 +69,7 @@ export default function Hero() {
             href={LINKS.onboarding}
             className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-2 to-brand px-6 py-3.5 text-[15px] font-semibold text-white shadow-brand transition-transform duration-200 hover:scale-[1.04] active:scale-[0.98]"
           >
-            Become a Design Partner
+            Try NINA Today
             <svg
               className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
               viewBox="0 0 16 16"
