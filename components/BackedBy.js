@@ -16,20 +16,39 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * Duration is derived from that width so the speed stays constant no matter
  * how many repeats it takes.
  */
-// `size` is per-logo on purpose. These marks aren't visually equivalent at a
-// shared cap — Marl is a stacked lockup (icon over two lines of type), so it
-// carries far less weight per pixel than a plain wordmark and needs more room
-// to read at the same optical size. Kept as the only max-h source so two
-// competing Tailwind height utilities can't fight over precedence.
+// `size` and `width` are per-logo on purpose. These marks aren't visually
+// equivalent at a shared cap — Marl is a stacked lockup (icon over two lines
+// of type), so it carries far less weight per pixel than a plain wordmark and
+// needs more room to read at the same optical size. Each is the only max-h /
+// max-w source for its image so two competing Tailwind utilities can't fight
+// over precedence.
+//
+// Width matters most for the long wordmarks: NEXT AI is 5.3:1, so at a 128px
+// cap it would be clamped to ~24px tall and read as half the size of the
+// square marks beside it.
+const WIDTH = "max-w-[104px] sm:max-w-[128px]";
+
 const BACKERS = [
   {
     name: "Marl Accelerator",
     src: "/logos/marl.png",
     size: "max-h-14 sm:max-h-16",
+    width: WIDTH,
   },
-  { name: "NEXT", src: "/logos/next.png", size: "max-h-10 sm:max-h-12" },
-  { name: "MaRS", src: "/logos/mars.png", size: "max-h-10 sm:max-h-12" },
-  { name: "NEC X", src: "/logos/necx.png", size: "max-h-10 sm:max-h-12" },
+  {
+    name: "NEXT Canada",
+    src: "/logos/next-canada.png",
+    size: "max-h-12 sm:max-h-14",
+    width: "max-w-[132px] sm:max-w-[160px]",
+  },
+  {
+    name: "NEXT AI",
+    src: "/logos/next-ai.png",
+    size: "max-h-9 sm:max-h-11",
+    width: "max-w-[150px] sm:max-w-[180px]",
+  },
+  { name: "MaRS", src: "/logos/mars.png", size: "max-h-10 sm:max-h-12", width: WIDTH },
+  { name: "NEC X", src: "/logos/necx.png", size: "max-h-10 sm:max-h-12", width: WIDTH },
 ];
 
 const PX_PER_SECOND = 55;
@@ -38,7 +57,7 @@ const PX_PER_SECOND = 55;
 // re-render from a resize — render the wordmark instead of re-requesting.
 const missing = new Set();
 
-function Logo({ name, src, size = "max-h-10 sm:max-h-12" }) {
+function Logo({ name, src, size = "max-h-10 sm:max-h-12", width = WIDTH }) {
   const [failed, setFailed] = useState(false);
   const imgRef = useRef(null);
 
@@ -70,10 +89,10 @@ function Logo({ name, src, size = "max-h-10 sm:max-h-12" }) {
       src={src}
       alt={name}
       onError={markMissing}
-      // Bounded by both height and width rather than height alone: three of
-      // these marks are square and one is a 3.88:1 wordmark, so a shared
-      // height would leave the square ones looking shrunken beside it.
-      className={`${size} w-auto max-w-[104px] object-contain sm:max-w-[128px]`}
+      // Bounded by both height and width rather than height alone: some of
+      // these marks are square and some are long wordmarks, so a shared
+      // height would leave the square ones looking shrunken beside them.
+      className={`${size} ${width} w-auto object-contain`}
     />
   );
 }
@@ -87,7 +106,7 @@ function Group({ innerRef, hidden }) {
     >
       {BACKERS.map((b) => (
         <div key={b.name} className="grid h-14 shrink-0 place-items-center sm:h-16">
-          <Logo name={b.name} src={b.src} size={b.size} />
+          <Logo name={b.name} src={b.src} size={b.size} width={b.width} />
         </div>
       ))}
     </div>
