@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import WorkflowFlow from "./WorkflowFlow";
 import Walkthrough from "./Walkthrough";
 import { STUDIO } from "@/lib/walkthroughs";
-import BackedBy from "./BackedBy";
 import { LINKS, newTab } from "@/lib/links";
 
 const container = {
@@ -96,10 +95,6 @@ export default function Hero() {
             </span>
             Watch NINA in Action
           </a>
-        </motion.div>
-
-        <motion.div variants={item}>
-          <BackedBy />
         </motion.div>
 
         <motion.div variants={item} className="mx-auto mt-12 max-w-4xl sm:mt-16">
