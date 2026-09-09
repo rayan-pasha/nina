@@ -6,7 +6,6 @@ import Solution from "@/components/Solution";
 import UseCase from "@/components/UseCase";
 import Compare from "@/components/Compare";
 import Setup from "@/components/Setup";
-import Partner from "@/components/Partner";
 import Footer from "@/components/Footer";
 
 const description =
@@ -36,7 +35,6 @@ export default function Page() {
         <UseCase />
         <Compare />
         <Setup />
-        <Partner />
       </main>
       <Footer />
     </>
