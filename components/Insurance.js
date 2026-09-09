@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
-import BackedBy from "./BackedBy";
 import Walkthrough from "./Walkthrough";
 import { NORTHWIND } from "@/lib/walkthroughs";
 import { GUIDANCE, EXCHANGES, CONTROLS, AUDIENCES } from "@/lib/insurance";
@@ -72,9 +71,6 @@ export default function Insurance() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.2}>
-          <BackedBy />
-        </Reveal>
       </section>
 
       {/* ── Insurance carries more complexity ────────────────────────── */}
