@@ -579,14 +579,13 @@ export default function Product() {
           <Reveal className="h-full">
             <div className="aurora h-full rounded-[1.75rem] border border-line p-8 sm:p-12">
               <h2 className="display text-[1.5rem] sm:text-[1.85rem]">
-                It Runs on the Workflows You Already Have.
+                Built on Your Workflows
               </h2>
               <p className="mt-5 text-[16px] leading-relaxed">
-                AgenQ works from your workflows, product rules, documentation,
-                FAQs, and training material.
+                AgenQ uses your rules, documentation, and training materials
               </p>
               <p className="mt-5 text-[16.5px] font-medium text-ink">
-                No rebuild. No data migration. No separate portal.
+                You don&apos;t need to rebuild your software
               </p>
             </div>
           </Reveal>
@@ -596,15 +595,16 @@ export default function Product() {
               <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(closest-side,rgba(59,130,246,0.35),transparent)] blur-2xl" />
               <div className="relative">
                 <h2 className="display text-[1.5rem] !text-white sm:text-[1.85rem]">
-                  Most Assistants Stop at the Answer.
+                  {/* Broken at the sentence: left to wrap it strands "Acts"
+                      alone on the second line. */}
+                  Most Assistants Answer.
+                  <br className="hidden sm:block" /> AgenQ Acts
                 </h2>
                 <p className="mt-5 text-[16px] leading-relaxed text-white/60">
-                  An assistant tells the user to open Settings and select
-                  Integrations. AgenQ opens Settings, carries out the workflow,
-                  and tells them what changed.
+                  AgenQ runs the workflow and confirms what changed
                 </p>
                 <p className="mt-5 text-[17px] font-medium leading-relaxed text-white">
-                  The user didn&apos;t want directions. They wanted it done.
+                  Your users get the result, not the instructions
                 </p>
               </div>
             </div>
