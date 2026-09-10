@@ -39,9 +39,14 @@ export default function Hero() {
           </span>
         </motion.div>
 
+        {/* max-w-5xl, not 4xl: at the lg size "Your product should onboard"
+            measures ~939px, so a 896px box broke it across two lines and the
+            headline ran to three. 1024px holds it on one, down to ~900px
+            wide; below that the type is small enough that the phrase wraps
+            again, which is fine on a tablet. */}
         <motion.h1
           variants={item}
-          className="display mx-auto mt-6 max-w-4xl text-[clamp(2.125rem,10.5vw,2.6rem)] sm:mt-7 sm:text-[clamp(3rem,8vw,3.75rem)] lg:text-[4.15rem]"
+          className="display mx-auto mt-6 max-w-5xl text-[clamp(2.125rem,10.5vw,2.6rem)] sm:mt-7 sm:text-[clamp(3rem,8vw,3.75rem)] lg:text-[4.15rem]"
         >
           Your product should onboard
           <br className="hidden sm:block" />{" "}
