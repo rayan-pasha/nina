@@ -28,20 +28,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 // square marks beside it.
 const WIDTH = "max-w-[104px] sm:max-w-[128px]";
 
+// Order is the loop order. NEXT Canada sits last so that, once the track
+// wraps, it lands between NEC X and Marl rather than beside NEXT AI — the two
+// NEXT marks read as one repeated logo when they're adjacent.
 const BACKERS = [
   {
     name: "Marl Accelerator",
     src: "/logos/marl.png",
     size: "max-h-14 sm:max-h-16",
     width: WIDTH,
-  },
-  {
-    name: "NEXT Canada",
-    src: "/logos/next-canada.png",
-    // Won't go much below this: "CANADA" is hairline type under the wordmark
-    // and stops being legible if the lockup shrinks further.
-    size: "max-h-9 sm:max-h-11",
-    width: "max-w-[104px] sm:max-w-[124px]",
   },
   {
     name: "NEXT AI",
@@ -51,6 +46,14 @@ const BACKERS = [
   },
   { name: "MaRS", src: "/logos/mars.png", size: "max-h-10 sm:max-h-12", width: WIDTH },
   { name: "NEC X", src: "/logos/necx.png", size: "max-h-10 sm:max-h-12", width: WIDTH },
+  {
+    name: "NEXT Canada",
+    src: "/logos/next-canada.png",
+    // Won't go much below this: "CANADA" is hairline type under the wordmark
+    // and stops being legible if the lockup shrinks further.
+    size: "max-h-9 sm:max-h-11",
+    width: "max-w-[104px] sm:max-w-[124px]",
+  },
 ];
 
 const PX_PER_SECOND = 55;
