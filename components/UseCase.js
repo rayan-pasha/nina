@@ -12,7 +12,15 @@ const signals = [
   "Users who sign up but never reach value",
 ];
 
-const without = ["Dashboard", "Settings", "Team", "Permissions", "Invite", "Confirmation"];
+// The first chip is where the user starts, written as a breadcrumb; the rest
+// are what happens to them, not screens they visit.
+const without = [
+  "User > Dashboard",
+  "Gets stuck",
+  "Searches for help elsewhere",
+  "Gets frustrated",
+  "Churns",
+];
 const withNina = ["Ask NINA", "Follow highlighted steps", "Done"];
 
 function Path({ label, items, lit }) {
