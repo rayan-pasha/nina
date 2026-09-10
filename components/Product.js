@@ -555,10 +555,12 @@ export default function Product() {
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="display text-[1.95rem] sm:text-[2.5rem]">
-                A Closer <span className="text-grad">Look</span>
+                Watch AgenQ <span className="text-grad">Do the Work</span>
               </h2>
               <p className="mt-6 text-[16.5px] leading-relaxed">
-                Watch AgenQ Do the Work
+                AgenQ runs inside your product, where the work is already
+                happening. The user stays in context while AgenQ moves the
+                workflow forward
               </p>
             </div>
           </Reveal>
