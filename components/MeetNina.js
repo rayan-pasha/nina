@@ -29,7 +29,7 @@ export default function MeetNina() {
         <Reveal delay={0.08}>
           <h2 className="display mx-auto mt-7 max-w-3xl text-[2rem] sm:text-[2.75rem]">
             The expert already inside{" "}
-            <span className="text-grad">your product.</span>
+            <span className="text-grad">your product</span>
           </h2>
         </Reveal>
 

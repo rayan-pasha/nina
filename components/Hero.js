@@ -45,7 +45,7 @@ export default function Hero() {
         >
           Your product should onboard
           <br className="hidden sm:block" />{" "}
-          <span className="text-grad">its own users.</span>
+          <span className="text-grad">its own users</span>
         </motion.h1>
 
         {/* Animated workflow, immediately below the headline */}

@@ -37,7 +37,7 @@ export default function Insurance() {
           <Reveal>
             <h1 className="display mx-auto max-w-3xl text-[clamp(2.125rem,9vw,2.6rem)] sm:text-[clamp(3rem,7vw,3.6rem)] lg:text-[4rem]">
               Make Complex Insurance{" "}
-              <span className="text-grad">Easier to Understand and Use.</span>
+              <span className="text-grad">Easier to Understand and Use</span>
             </h1>
           </Reveal>
 
@@ -320,7 +320,7 @@ export default function Insurance() {
           <Reveal>
             <h2 className="display text-[2.1rem] sm:text-[3rem]">
               Give Users the Guidance They Need,{" "}
-              <span className="text-grad">Where They Work.</span>
+              <span className="text-grad">Where They Work</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>

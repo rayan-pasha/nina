@@ -69,7 +69,7 @@ export default function UseCase() {
             <Reveal>
               <h2 className="display text-[2rem] sm:text-[2.5rem]">
                 Built for software that{" "}
-                <span className="text-grad">takes time to learn.</span>
+                <span className="text-grad">takes time to learn</span>
               </h2>
             </Reveal>
             <Reveal delay={0.08}>

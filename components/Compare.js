@@ -31,7 +31,7 @@ export default function Compare() {
             <h2 className="display mx-auto max-w-2xl text-center text-[2rem] !text-white sm:text-[2.75rem]">
               Spend less time{" "}
               <span className="bg-gradient-to-r from-brand-3 to-white bg-clip-text text-transparent">
-                teaching your software.
+                teaching your software
               </span>
             </h2>
           </Reveal>

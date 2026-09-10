@@ -32,7 +32,7 @@ export default function Solution() {
           <h2 className="display mx-auto max-w-3xl text-center text-[2rem] sm:text-[2.75rem]">
             NINA doesn&apos;t answer with steps.
             <br />
-            <span className="text-grad">She walks users through them.</span>
+            <span className="text-grad">She walks users through them</span>
           </h2>
         </Reveal>
 
