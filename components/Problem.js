@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 
 const items = [
-  "A Loom video.",
-  "A training session.",
-  "A Slack message.",
-  "A support ticket.",
+  "Another walkthrough video",
+  "Another training call",
+  "Another Slack message",
+  "Another support ticket",
 ];
 
 export default function Problem() {
@@ -22,14 +22,13 @@ export default function Problem() {
                 You built the product.
                 <br />
                 You shouldn&apos;t have to{" "}
-                <span className="text-grad">teach</span> it too.
+                <span className="text-grad">teach</span> it too
               </h2>
             </Reveal>
             <Reveal delay={0.08}>
               <p className="mt-6 max-w-md text-[16.5px] leading-relaxed">
-                Most SaaS teams still spend time teaching users how to use
-                software that should already know how to teach itself. It
-                doesn&apos;t scale. And it shouldn&apos;t be your job.
+                Your team shouldn&apos;t have to teach the same tasks every
+                week
               </p>
             </Reveal>
           </div>
