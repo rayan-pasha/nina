@@ -450,9 +450,8 @@ export default function Product() {
                 <span className="text-grad">Learn Your Software.</span>
               </h2>
               <p className="mt-6 max-w-[30rem] text-[16.5px] leading-relaxed">
-                They signed up to get something done. Documentation explains.
-                Training calls teach. Support answers questions. But all of them
-                ask the user to stop working and learn the system.
+                They signed up to get something done. Instead, they search the
+                docs, watch tutorials, or wait for help.
               </p>
               <p className="mt-5 max-w-[30rem] text-[17px] font-medium leading-relaxed text-ink">
                 The expertise exists. It just isn&apos;t there when they need
