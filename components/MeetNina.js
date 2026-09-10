@@ -67,6 +67,18 @@ export default function MeetNina() {
             <span className="text-grad">Work gets done.</span>
           </p>
         </Reveal>
+
+        {/* Same three-tone rhythm as the line above, one step down in size so
+            it reads as the consequence rather than a second headline. */}
+        <Reveal delay={0.26}>
+          <p className="mt-3 text-[17px] font-medium tracking-[-0.01em] sm:text-[19px]">
+            <span className="text-mute">Happier users.</span>{" "}
+            <span className="text-ink">Faster onboarding.</span>{" "}
+            <span className="text-grad">
+              Lower training and support costs.
+            </span>
+          </p>
+        </Reveal>
       </div>
     </section>
   );
