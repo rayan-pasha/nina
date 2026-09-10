@@ -35,10 +35,9 @@ export default function MeetNina() {
 
         <Reveal delay={0.14}>
           <p className="mx-auto mt-6 max-w-2xl text-[16.5px] leading-relaxed sm:text-[17px]">
-            NINA understands your workflows, documentation, FAQs, and product
-            knowledge. When users get stuck, they ask NINA. NINA answers
-            questions and guides them through the next step, directly inside
-            your application.
+            NINA uses your workflows, documentation, FAQs, and product
+            knowledge to answer questions and guide users step by step right
+            inside your application
           </p>
         </Reveal>
 
