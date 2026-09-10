@@ -615,7 +615,7 @@ export default function Product() {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <h2 className="display mx-auto max-w-2xl text-center text-[1.95rem] sm:text-[2.5rem]">
-              Where Teams <span className="text-grad">Use AgenQ</span>
+              Explore <span className="text-grad">AgenQ</span>
             </h2>
           </Reveal>
 
