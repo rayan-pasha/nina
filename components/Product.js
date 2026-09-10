@@ -558,9 +558,7 @@ export default function Product() {
                 A Closer <span className="text-grad">Look</span>
               </h2>
               <p className="mt-6 text-[16.5px] leading-relaxed">
-                AgenQ runs inside your product, where the work is already
-                happening. The user stays in context while AgenQ moves the
-                workflow forward.
+                Watch AgenQ Do the Work
               </p>
             </div>
           </Reveal>
