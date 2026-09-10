@@ -12,7 +12,6 @@ import {
   ASKS,
   STEPS,
   STEPS_SUBHEAD,
-  STEPS_NOTE,
   BOUNDARIES,
   BOUNDARIES_SUBHEAD,
   BOUNDARIES_NOTE,
@@ -547,21 +546,6 @@ export default function Product() {
             ))}
           </div>
 
-          <Reveal delay={0.3}>
-            <div className="mt-5 flex items-start gap-5 rounded-3xl border border-line bg-paper p-6 sm:items-center sm:gap-6 sm:p-7">
-              <span className="shrink-0 text-brand">
-                <StepIcon name="shield-check" className="h-11 w-11" />
-              </span>
-              <div>
-                <p className="text-[16px] font-semibold text-ink">
-                  {STEPS_NOTE.title}
-                </p>
-                <p className="mt-1.5 text-[15px] leading-relaxed">
-                  {STEPS_NOTE.body}
-                </p>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
