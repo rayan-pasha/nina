@@ -455,8 +455,8 @@ export default function Product() {
                 ask the user to stop working and learn the system.
               </p>
               <p className="mt-5 max-w-[30rem] text-[17px] font-medium leading-relaxed text-ink">
-                The expertise already exists. It just isn&apos;t there when the
-                user needs it.
+                The expertise exists. It just isn&apos;t there when they need
+                it.
               </p>
             </div>
           </Reveal>
