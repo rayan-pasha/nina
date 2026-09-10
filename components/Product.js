@@ -662,15 +662,8 @@ export default function Product() {
       <section className="px-5 py-20 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            {/* Broken at the phrase from sm up. Left to wrap on its own the
-                second line keeps only "you set." and the emphasis strands. */}
             <h2 className="display mx-auto max-w-3xl text-center text-[1.95rem] sm:text-[2.5rem]">
-              AgenQ works inside
-              <br className="hidden sm:block" />{" "}
-              the boundaries{" "}
-              {/* Held together so narrow screens don't strand "set." alone on
-                  a third line. */}
-              <span className="text-grad whitespace-nowrap">you set.</span>
+              Control and <span className="text-grad">Security</span>
             </h2>
           </Reveal>
 
@@ -693,9 +686,7 @@ export default function Product() {
                   </div>
 
                   <h3 className="mt-6 text-[19px] font-semibold leading-snug tracking-[-0.025em] text-ink">
-                    {b.lines[0]}
-                    <br />
-                    {b.lines[1]}
+                    {b.title}
                   </h3>
 
                   {/* mt-auto pins the rule and its line to the bottom, so the
