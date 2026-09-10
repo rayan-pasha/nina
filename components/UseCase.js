@@ -12,10 +12,11 @@ const signals = [
   "Users who sign up but never reach value",
 ];
 
-// The first chip is where the user starts, written as a breadcrumb; the rest
-// are what happens to them, not screens they visit.
+// Only the first two chips are places in the product; the rest are what
+// happens to the user, not screens they visit.
 const without = [
-  "User > Dashboard",
+  "User",
+  "Dashboard",
   "Gets stuck",
   "Searches for help elsewhere",
   "Gets frustrated",
