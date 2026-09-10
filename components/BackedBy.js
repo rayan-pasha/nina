@@ -38,14 +38,16 @@ const BACKERS = [
   {
     name: "NEXT Canada",
     src: "/logos/next-canada.png",
-    size: "max-h-12 sm:max-h-14",
-    width: "max-w-[132px] sm:max-w-[160px]",
+    // Won't go much below this: "CANADA" is hairline type under the wordmark
+    // and stops being legible if the lockup shrinks further.
+    size: "max-h-9 sm:max-h-11",
+    width: "max-w-[104px] sm:max-w-[124px]",
   },
   {
     name: "NEXT AI",
     src: "/logos/next-ai.png",
-    size: "max-h-9 sm:max-h-11",
-    width: "max-w-[150px] sm:max-w-[180px]",
+    size: "max-h-8 sm:max-h-10",
+    width: "max-w-[124px] sm:max-w-[148px]",
   },
   { name: "MaRS", src: "/logos/mars.png", size: "max-h-10 sm:max-h-12", width: WIDTH },
   { name: "NEC X", src: "/logos/necx.png", size: "max-h-10 sm:max-h-12", width: WIDTH },
