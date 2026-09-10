@@ -6,21 +6,21 @@ import Walkthrough from "./Walkthrough";
 import { LEDGERLY } from "@/lib/walkthroughs";
 
 const steps = [
-  { n: "01", title: "Add NINA to your product", body: "One line of code. No rebuild." },
+  { n: "01", title: "Add NINA", body: "Install NINA inside your product" },
   {
     n: "02",
-    title: "Teach NINA your workflows",
-    body: "Not just documents. The actual click-by-click paths users take to get work done inside your product.",
+    title: "Teach Your Workflows",
+    body: "Show NINA the steps users need to learn",
   },
   {
     n: "03",
-    title: "Users ask in plain English",
-    body: "“How do I invite my team?” Users ask in their own words, right where they are working.",
+    title: "Users Ask",
+    body: "“How do I invite my team?”",
   },
   {
     n: "04",
-    title: "NINA guides them through it, live",
-    body: "She highlights the next step on screen and moves with the user until the task is complete.",
+    title: "NINA Guides",
+    body: "Users follow highlighted steps to complete the task",
   },
 ];
 
