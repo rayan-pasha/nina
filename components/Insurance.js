@@ -5,6 +5,7 @@ import Reveal from "./Reveal";
 import Walkthrough from "./Walkthrough";
 import { NORTHWIND } from "@/lib/walkthroughs";
 import { GUIDANCE, EXCHANGES, CONTROLS, AUDIENCES } from "@/lib/insurance";
+import { GUIDANCE_MOCKS } from "./GuidanceMock";
 import { LINKS, newTab } from "@/lib/links";
 
 /**
@@ -12,18 +13,6 @@ import { LINKS, newTab } from "@/lib/links";
  * sections, same copy, same order — rendered in this site's type, colour and
  * motion, with the hero wash carried over from the design.
  */
-
-function MediaSlot({ label, className = "" }) {
-  return (
-    <div
-      className={`grid place-items-center rounded-3xl border border-line bg-tint/60 ${className}`}
-    >
-      <p className="max-w-[20rem] px-6 text-center text-[13px] leading-relaxed text-mute">
-        {label}
-      </p>
-    </div>
-  );
-}
 
 export default function Insurance() {
   return (
@@ -122,26 +111,34 @@ export default function Insurance() {
           </Reveal>
 
           <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {GUIDANCE.map((g, i) => (
-              <Reveal key={g.title} delay={i * 0.08} className="h-full">
-                <motion.article
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 320, damping: 26 }}
-                  className="card h-full overflow-hidden"
-                >
-                  <MediaSlot
-                    label={g.media}
-                    className="h-[13.5rem] w-full rounded-none border-0 border-b border-line"
-                  />
-                  <div className="p-7">
-                    <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-ink">
-                      {g.title}
-                    </h3>
-                    <p className="mt-3 text-[15px] leading-relaxed">{g.body}</p>
-                  </div>
-                </motion.article>
-              </Reveal>
-            ))}
+            {GUIDANCE.map((g, i) => {
+              const Mock = GUIDANCE_MOCKS[g.mock];
+              return (
+                <Reveal key={g.title} delay={i * 0.08} className="h-full">
+                  <motion.article
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 26 }}
+                    className="card h-full overflow-hidden"
+                  >
+                    {/* Aspect-locked to the illustration's own 380x228 rather
+                        than a fixed height: the SVG fills its box by slicing,
+                        so any other ratio crops the scene — at the md
+                        breakpoint a 13.5rem box cut ~65px off each side. */}
+                    <div className="aspect-[380/228] w-full overflow-hidden border-b border-line bg-tint/60">
+                      {Mock ? <Mock /> : null}
+                    </div>
+                    <div className="p-7">
+                      <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-ink">
+                        {g.title}
+                      </h3>
+                      <p className="mt-3 text-[15px] leading-relaxed">
+                        {g.body}
+                      </p>
+                    </div>
+                  </motion.article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
