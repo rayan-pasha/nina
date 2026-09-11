@@ -72,7 +72,7 @@ export default function MeetNina() {
             as the consequence of that line rather than a second headline, so
             it doesn't repeat its three-colour emphasis. */}
         <Reveal delay={0.26}>
-          <p className="mt-3 text-[17px] font-medium tracking-[-0.01em] text-mute sm:text-[19px]">
+          <p className="mt-3 text-[17px] font-medium tracking-[-0.01em] text-ink sm:text-[19px]">
             Happier users. Faster onboarding. Lower training and support costs.
           </p>
         </Reveal>
