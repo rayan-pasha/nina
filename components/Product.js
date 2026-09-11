@@ -446,7 +446,7 @@ export default function Product() {
             <div>
               <h2 className="display text-[1.95rem] sm:text-[2.5rem]">
                 Nobody Signed Up to{" "}
-                <span className="text-grad">Learn Your Software.</span>
+                <span className="text-grad">Learn Your Software</span>
               </h2>
               <p className="mt-6 max-w-[30rem] text-[16.5px] leading-relaxed">
                 They signed up to get something done. Instead, they search the
@@ -454,7 +454,7 @@ export default function Product() {
               </p>
               <p className="mt-5 max-w-[30rem] text-[17px] font-medium leading-relaxed text-ink">
                 The expertise exists. It just isn&apos;t there when they need
-                it.
+                it
               </p>
             </div>
           </Reveal>
