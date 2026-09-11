@@ -731,7 +731,7 @@ export default function Product() {
           <Reveal>
             <h2 className="display text-[2.1rem] sm:text-[3rem]">
               Give Your Users the Outcome,{" "}
-              <span className="text-grad">Not the Instructions.</span>
+              <span className="text-grad">Not the Instructions</span>
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
@@ -745,7 +745,7 @@ export default function Product() {
               {...newTab}
               className="group mt-9 inline-flex min-h-[52px] items-center gap-2 rounded-full bg-gradient-to-r from-brand-2 to-brand px-8 text-[15.5px] font-semibold text-white shadow-brand transition-transform duration-200 hover:scale-[1.04] active:scale-[0.98]"
             >
-              Book a Live Demo
+              Book a Demo
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 <Arrow />
               </span>
