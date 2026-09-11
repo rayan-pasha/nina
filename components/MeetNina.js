@@ -68,15 +68,12 @@ export default function MeetNina() {
           </p>
         </Reveal>
 
-        {/* Same three-tone rhythm as the line above, one step down in size so
-            it reads as the consequence rather than a second headline. */}
+        {/* All one tone, a step down in size from the line above: this reads
+            as the consequence of that line rather than a second headline, so
+            it doesn't repeat its three-colour emphasis. */}
         <Reveal delay={0.26}>
-          <p className="mt-3 text-[17px] font-medium tracking-[-0.01em] sm:text-[19px]">
-            <span className="text-mute">Happier users.</span>{" "}
-            <span className="text-ink">Faster onboarding.</span>{" "}
-            <span className="text-grad">
-              Lower training and support costs.
-            </span>
+          <p className="mt-3 text-[17px] font-medium tracking-[-0.01em] text-mute sm:text-[19px]">
+            Happier users. Faster onboarding. Lower training and support costs.
           </p>
         </Reveal>
       </div>
