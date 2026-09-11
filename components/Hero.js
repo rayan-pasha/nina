@@ -102,6 +102,16 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Centred under the pair rather than under the primary button alone:
+            the row wraps to a stacked column on narrow screens, so anchoring
+            this to one button would leave it hanging off to the side. */}
+        <motion.p
+          variants={item}
+          className="mt-3.5 text-[13.5px] text-mute sm:mt-4"
+        >
+          No credit card required
+        </motion.p>
+
         <motion.div variants={item} className="mx-auto mt-12 max-w-4xl sm:mt-16">
           <Walkthrough config={STUDIO} />
         </motion.div>
