@@ -29,10 +29,15 @@ export default function Setup() {
             </span>
           </Reveal>
           <Reveal delay={0.08}>
-            <h2 className="display mx-auto mt-7 max-w-2xl text-[2rem] sm:text-[2.75rem]">
-              Answering questions in 10 minutes.
-              <br />
-              <span className="text-grad">Fully live in an afternoon</span>
+            {/* max-w-4xl because the line measures ~874px at the sm size and
+                a 672px box orphaned "afternoon" on its own row. nowrap keeps
+                the gradient phrase whole, so when the box is too narrow it
+                breaks before "a single" rather than inside it. */}
+            <h2 className="display mx-auto mt-7 max-w-4xl text-[2rem] sm:text-[2.75rem]">
+              Go from setup to live in{" "}
+              <span className="text-grad whitespace-nowrap">
+                a single afternoon
+              </span>
             </h2>
           </Reveal>
           <Reveal delay={0.14}>
