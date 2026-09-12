@@ -5,9 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "./Reveal";
 import BackedBy from "./BackedBy";
-import Walkthrough from "./Walkthrough";
 import { InsuranceMock, SaasMock } from "./VerticalMock";
-import { STUDIO, LEDGERLY } from "@/lib/walkthroughs";
 import {
   ASKS,
   STEPS,
@@ -431,10 +429,16 @@ export default function Product() {
       </section>
 
       {/* ── The demo panel ───────────────────────────────────────────── */}
+      {/* Was <Walkthrough config={STUDIO} /> — the scripted React version of
+          the same story. That component and config are still live on the
+          SaaS Onboarding hero, so swapping back is a one-line change. */}
       <section className="px-5 pb-24 pt-8 sm:pb-28 sm:pt-12">
         <Reveal>
           <div className="mx-auto max-w-5xl">
-            <Walkthrough config={STUDIO} />
+            <DemoFrame
+              src="/demos/studio-create-project.html"
+              title="AgenQ creating a new project in Studio"
+            />
           </div>
         </Reveal>
       </section>
@@ -565,9 +569,14 @@ export default function Product() {
             </div>
           </Reveal>
 
+          {/* Was <Walkthrough config={LEDGERLY} />; still live on the SaaS
+              Onboarding page's Solution section. */}
           <Reveal delay={0.12}>
             <div className="mx-auto mt-12 max-w-5xl">
-              <Walkthrough config={LEDGERLY} />
+              <DemoFrame
+                src="/demos/ledgerly-send-invoice.html"
+                title="AgenQ sending a customer invoice in Ledgerly"
+              />
             </div>
           </Reveal>
         </div>
