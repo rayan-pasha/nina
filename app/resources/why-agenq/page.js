@@ -1,9 +1,6 @@
-import PlaceholderPage from "@/components/PlaceholderPage";
+import PlaceholderPage, { placeholderMetadata } from "@/components/PlaceholderPage";
 
-export const metadata = {
-  title: "Why AgenQ - AgenQ",
-  alternates: { canonical: "/resources/why-agenq" },
-};
+export const metadata = placeholderMetadata("Why AgenQ", "/resources/why-agenq");
 
 export default function Page() {
   return <PlaceholderPage title="Why AgenQ" />;

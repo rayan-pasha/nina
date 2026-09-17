@@ -185,7 +185,7 @@ const DEMO_H = 630;
  * out at full size and scaled by the ratio the card actually has. That ratio
  * is measured rather than assumed, since the card is fluid.
  */
-function DemoFrame({ src, title }) {
+function DemoFrame({ src, title, eager = false }) {
   const wrap = useRef(null);
   const [scale, setScale] = useState(0);
 
@@ -212,6 +212,11 @@ function DemoFrame({ src, title }) {
         tabIndex={-1}
         aria-hidden="true"
         scrolling="no"
+        // Five of these run on the page. Only the hero's is in view on load,
+        // so the rest wait until they're scrolled near — each is a whole page
+        // with its own timers, and starting all five at once was the single
+        // heaviest thing in the initial load.
+        loading={eager ? "eager" : "lazy"}
         className="absolute left-0 top-0 origin-top-left border-0"
         style={{
           width: DEMO_W,
@@ -438,6 +443,7 @@ export default function Product() {
             <DemoFrame
               src="/demos/studio-create-project.html"
               title="AgenQ creating a new project in Studio"
+              eager
             />
           </div>
         </Reveal>

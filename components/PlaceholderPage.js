@@ -2,6 +2,20 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 /**
+ * Metadata for a placeholder route. Spread into the page's `metadata` so the
+ * page is kept out of search: indexing "Coming soon" would show an empty
+ * result under the AgenQ name, and it's excluded from the sitemap for the
+ * same reason. Drop this when the page gets real content.
+ */
+export function placeholderMetadata(title, path) {
+  return {
+    title: `${title} - AgenQ`,
+    alternates: { canonical: path },
+    robots: { index: false, follow: true },
+  };
+}
+
+/**
  * Stand-in for a route that exists in the nav but has no content yet.
  * Keeps the site chrome so the page is navigable rather than a dead end, and
  * says "Coming soon" so a visitor knows the page is unfinished rather than

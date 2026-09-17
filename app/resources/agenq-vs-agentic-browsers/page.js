@@ -1,9 +1,6 @@
-import PlaceholderPage from "@/components/PlaceholderPage";
+import PlaceholderPage, { placeholderMetadata } from "@/components/PlaceholderPage";
 
-export const metadata = {
-  title: "AgenQ vs Agentic Browsers - AgenQ",
-  alternates: { canonical: "/resources/agenq-vs-agentic-browsers" },
-};
+export const metadata = placeholderMetadata("AgenQ vs Agentic Browsers", "/resources/agenq-vs-agentic-browsers");
 
 export default function Page() {
   return <PlaceholderPage title="AgenQ vs Agentic Browsers" />;

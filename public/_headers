@@ -12,3 +12,14 @@
 # Hashed build assets are immutable — safe to cache forever.
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Baseline hardening for every response. SAMEORIGIN rather than DENY because
+# the product demos are iframed from the same site; anything stricter would
+# blank them. No Content-Security-Policy yet: the demo pages inline all of
+# their own script, so a CSP would need per-page nonces to be worth having.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
