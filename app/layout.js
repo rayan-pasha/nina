@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -15,6 +16,12 @@ const description =
 // Set NEXT_PUBLIC_SITE_URL in production so OG/Twitter tags resolve to
 // absolute URLs — social crawlers reject relative image paths.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3005";
+
+// The GA4 measurement ID lives in the environment rather than here, so the
+// tag only ships when it's set — local dev and preview builds send nothing,
+// and time spent working on the site never shows up as traffic. Both are
+// read at build time (NEXT_PUBLIC_*), so changing either means a redeploy.
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -69,6 +76,7 @@ export default function RootLayout({ children }) {
         </a>
         {children}
       </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }

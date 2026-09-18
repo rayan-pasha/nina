@@ -8,6 +8,7 @@
     "start": "next start -p 3005"
   },
   "dependencies": {
+    "@next/third-parties": "^15.5.25",
     "framer-motion": "^12.23.12",
     "next": "^15.5.4",
     "react": "^19.1.1",
