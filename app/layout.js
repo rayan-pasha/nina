@@ -1,5 +1,7 @@
 import { Poppins } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import CtaTracking from "@/components/CtaTracking";
+import HubSpot from "@/components/HubSpot";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -17,11 +19,12 @@ const description =
 // absolute URLs — social crawlers reject relative image paths.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3005";
 
-// The GA4 measurement ID lives in the environment rather than here, so the
-// tag only ships when it's set — local dev and preview builds send nothing,
-// and time spent working on the site never shows up as traffic. Both are
-// read at build time (NEXT_PUBLIC_*), so changing either means a redeploy.
+// Analytics IDs live in the environment rather than here, so each tag only
+// ships when its ID is set — local dev and preview builds send nothing, and
+// time spent working on the site never shows up as traffic. All of these
+// are read at build time (NEXT_PUBLIC_*), so changing one means a redeploy.
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const hubspotId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -75,6 +78,8 @@ export default function RootLayout({ children }) {
           Skip to content
         </a>
         {children}
+        {gaId && <CtaTracking />}
+        {hubspotId && <HubSpot portalId={hubspotId} />}
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
