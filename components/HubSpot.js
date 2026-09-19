@@ -30,10 +30,13 @@ export default function HubSpot({ portalId }) {
     hsq.push(["trackPageView"]);
   }, [pathname]);
 
+  // js-na2, not the js.hs-scripts.com most guides show: the host is
+  // region-specific and comes from the embed code HubSpot issues for the
+  // portal. The generic host returns nothing for a portal that lives on NA2.
   return (
     <Script
       id="hs-script-loader"
-      src={`https://js.hs-scripts.com/${portalId}.js`}
+      src={`https://js-na2.hs-scripts.com/${portalId}.js`}
       strategy="afterInteractive"
     />
   );
