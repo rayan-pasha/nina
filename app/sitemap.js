@@ -28,6 +28,7 @@ export default function sitemap() {
     { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
     { path: "/documentation", priority: 0.6, changeFrequency: "monthly" },
     { path: "/resources/customer-stories", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   ];
 
   const marketing = PAGES.map((p) => ({
