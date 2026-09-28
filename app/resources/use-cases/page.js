@@ -1,7 +1,21 @@
-import PlaceholderPage, { placeholderMetadata } from "@/components/PlaceholderPage";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import UseCaseIndex from "@/components/UseCaseIndex";
 
-export const metadata = placeholderMetadata("Use Cases", "/resources/use-cases");
+export const metadata = {
+  title: "Use Cases - AgenQ",
+  description:
+    "Every AgenQ solution, feature, and use-case page in one place — by industry, by outcome, by capability, and by team.",
+  alternates: { canonical: "/resources/use-cases" },
+  robots: { index: true, follow: true },
+};
 
 export default function Page() {
-  return <PlaceholderPage title="Use Cases" />;
+  return (
+    <>
+      <Nav />
+      <UseCaseIndex />
+      <Footer />
+    </>
+  );
 }

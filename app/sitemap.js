@@ -5,9 +5,7 @@ import { POSTS } from "@/lib/posts";
  * Exported as /sitemap.xml.
  *
  * Built from the same data the pages are built from, so a new post or
- * marketing page shows up here without a second edit. The placeholder
- * pages under /resources are left out on purpose: they carry `noindex`
- * and listing them would only invite Google to crawl an empty page.
+ * marketing page shows up here without a second edit.
  *
  * Priorities are relative, not absolute — they tell a crawler which pages
  * matter most when it's rationing visits, nothing more.
@@ -25,7 +23,9 @@ export default function sitemap() {
     { path: "/solutions/saas-onboarding", priority: 0.9, changeFrequency: "monthly" },
     { path: "/solutions/insurance", priority: 0.9, changeFrequency: "monthly" },
     { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/resources/use-cases", priority: 0.8, changeFrequency: "monthly" },
     { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/resources/faq", priority: 0.7, changeFrequency: "monthly" },
     { path: "/documentation", priority: 0.6, changeFrequency: "monthly" },
     { path: "/resources/customer-stories", priority: 0.6, changeFrequency: "monthly" },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },

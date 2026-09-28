@@ -19,28 +19,11 @@ function FooterLink({ link }) {
   const external = link.href && !link.href.startsWith("/") && LINKS[link.href];
 
   // `plain` marks copy that was never meant to be a link — the address line.
-  // Any other entry with no href is a page that hasn't been written yet, and
-  // says so rather than looking like a link that failed.
+  // It's the only entry without an href; every other one is a real page.
   if (!link.href) {
-    if (link.plain) {
-      return (
-        <li>
-          <span className={`${ROW} text-slate`}>{link.label}</span>
-        </li>
-      );
-    }
-
     return (
       <li>
-        <span className={`${ROW} flex-wrap gap-x-2 text-mute/60`}>
-          {link.label}
-          {/* Sentence case and no tracking: uppercased, the tag was wide
-              enough to wrap under nearly every label and left the columns
-              ragged. */}
-          <span className="whitespace-nowrap rounded-full bg-tint px-2 py-0.5 text-[10.5px] font-medium text-mute/70">
-            Coming soon
-          </span>
-        </span>
+        <span className={`${ROW} text-slate`}>{link.label}</span>
       </li>
     );
   }
@@ -125,8 +108,9 @@ export default function Footer() {
           </div>
         </Reveal>
 
-        {/* Five link columns */}
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
+        {/* Link columns. Three each, so both rows sit on the same grid and
+            the second row's headings line up under the first's. */}
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:gap-x-8">
           {FOOTER_COLUMNS.map((group, i) => (
             <Reveal key={group.title} delay={i * 0.05}>
               <Column group={group} />
@@ -135,7 +119,7 @@ export default function Footer() {
         </div>
 
         {/* Company / Contact / Follow */}
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:gap-x-8">
           {FOOTER_META.map((group, i) => (
             <Reveal key={group.title} delay={i * 0.05}>
               <Column group={group} />
