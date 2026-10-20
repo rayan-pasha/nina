@@ -20,14 +20,23 @@ export default function sitemap() {
 
   const core = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
-    { path: "/solutions/saas-onboarding", priority: 0.9, changeFrequency: "monthly" },
+    {
+      path: "/solutions/saas-onboarding",
+      priority: 0.9,
+      changeFrequency: "monthly",
+    },
     { path: "/solutions/insurance", priority: 0.9, changeFrequency: "monthly" },
     { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
     { path: "/resources/use-cases", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/use-cases/ezlynx", priority: 0.7, changeFrequency: "monthly" },
     { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
     { path: "/resources/faq", priority: 0.7, changeFrequency: "monthly" },
     { path: "/documentation", priority: 0.6, changeFrequency: "monthly" },
-    { path: "/resources/customer-stories", priority: 0.6, changeFrequency: "monthly" },
+    {
+      path: "/resources/customer-stories",
+      priority: 0.6,
+      changeFrequency: "monthly",
+    },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   ];
 
